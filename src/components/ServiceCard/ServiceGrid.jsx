@@ -7,12 +7,14 @@ const ServiceGrid = ({data}) => {
   return (
     <FlexGrid>
         {
-        data.map(({show})=><ServiceCard 
-        key={show.id}
-        id={show.id}
-        name={show.name}
-        image={show.image? show.image.medium : IMAGE_NOT_FOUND }
-        summary={show.summary}       
+        data.map((service)=><ServiceCard 
+        key={service.serviceId}
+        id={service.serviceId}
+        name={service.serviceName}
+        image={service.image? service.image.medium : IMAGE_NOT_FOUND }
+        servicePrice={service.servicePrice}
+        serviceDuration={service.serviceDuration}
+        discount={service.discount}       
         />)
         }
     </FlexGrid>

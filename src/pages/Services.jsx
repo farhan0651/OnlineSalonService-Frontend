@@ -16,14 +16,26 @@ const Services = () => {
 
   const onSearch=()=>{
     //fetch('http://localhost:8000/appointment/getAll')
-    fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
+    if(isView){
+    fetch(`http://localhost:8000/SalonService/service/${input}`)
     .then(res=>res.json())
     .then(result=>{
       setResults(result);
       console.log(result);
     })
     .catch(err=>console.log(err));
-  };
+  }
+  else{
+    fetch(`http://localhost:8000/SalonService/services`)
+    .then(res=>res.json())
+    .then(result=>{
+      setResults(result);
+      console.log(result);
+    })
+    .catch(err=>console.log(err));
+  }
+
+};
   
   const onKeyDown = (ev)=>{
     if (ev.keyCode === 13) {

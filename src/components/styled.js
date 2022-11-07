@@ -18,6 +18,20 @@ width: 300px;
     overflow: hidden;
     border: 1px solid #ddd;
 
+    .Rectangle {
+      box-sizing: border-box;
+
+      position: absolute;
+      width: 216px;
+      height: 275px;
+      left: 443px;
+      top: 187px;
+
+      background: #FFFFFF;
+      border: 1px solid rgba(87, 86, 100, 0.2);
+      border-radius: 8px;
+    }
+
     img {
       object-fit: cover;
       height: 100%;
