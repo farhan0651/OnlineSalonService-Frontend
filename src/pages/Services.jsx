@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState} from 'react'
+import { useState,useEffect} from 'react'
+import axios from "axios";
 import MainPageLayout from '../components/MainPageLayout'
 import ServiceGrid from '../components/ServiceCard/ServiceGrid'
 import Title from '../components/Title'
@@ -14,8 +15,13 @@ const Services = () => {
     setlnput(eventObject.target.value);
   };
 
+  useEffect(()=>{
+    axios.get(`http://localhost:8000/SalonService/services`)
+    .then(resp=>setResults(resp.data))
+    .catch(err=>console.log(err));
+  }, [])
+
   const onSearch=()=>{
-    //fetch('http://localhost:8000/appointment/getAll')
     if(isView){
     fetch(`http://localhost:8000/SalonService/service/${input}`)
     .then(res=>res.json())
@@ -25,7 +31,7 @@ const Services = () => {
     })
     .catch(err=>console.log(err));
   }
-  else{
+  /*else{
     fetch(`http://localhost:8000/SalonService/services`)
     .then(res=>res.json())
     .then(result=>{
@@ -33,7 +39,7 @@ const Services = () => {
       console.log(result);
     })
     .catch(err=>console.log(err));
-  }
+  }*/
 
 };
   
@@ -46,7 +52,7 @@ const Services = () => {
   const renderResults=()=>{
       if(results && results.length===0)
       {
-        return<div>No Results</div>
+        return<div>No Service available</div>
       }
       if(results && results.length>0){
         return <ServiceGrid data={results} />

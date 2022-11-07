@@ -17,7 +17,7 @@ const onlnputChange = (eventObject)=>{
 };
 
 useEffect(()=>{
-  axios.get("https://jsonplaceholder.typicode.com/todos/1")
+  axios.get("http://localhost:8000/appointment/getAll")
   .then(resp=>setResults(resp.data))
   .catch(err=>console.log(err));
 }, [])
@@ -33,7 +33,7 @@ const onSearch=()=>{
     })
     .catch(err=>console.log(err));
   }
-  else{
+  /*else{
     fetch(`http://localhost:8000/appointment/getAll`)
     .then(res=>res.json())
     .then(result=>{
@@ -41,7 +41,7 @@ const onSearch=()=>{
       console.log(result);
     })
     .catch(err=>console.log(err));
-  }
+  }*/
 };
 
 const onKeyDown = (ev)=>{
@@ -53,7 +53,7 @@ const onKeyDown = (ev)=>{
 const renderResults=()=>{
     if(results && results.length===0)
     {
-      return<div>No Results</div>
+      return<div>No Appointments</div>
     }
     if(results && results.length>0){
       return <AppointmentGrid data={results} />
