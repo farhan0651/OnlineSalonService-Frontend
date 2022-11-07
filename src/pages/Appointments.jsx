@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from "axios";
 import MainPageLayout from '../components/MainPageLayout'
 import Title from '../components/Title'
+import AppointmentGrid from '../components/AppointmentCard/AppointmentGrid';
 
 
 const Appointments = () => {
@@ -22,14 +23,24 @@ useEffect(()=>{
 }, [])
 
 const onSearch=()=>{
-  //fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
-  fetch('http://localhost:8000/appointment/getAll')
-  .then(res=>res.json())
-  .then(result=>{
-    setResults(result);
-    console.log(result);
-  })
-  .catch(err=>console.log(err));
+  if(isView){
+    fetch(`http://localhost:8000/appointment/${input}`)
+    .then(res=>res.json())
+    .then(result=>{
+      setResults(result);
+      console.log(result);
+    })
+    .catch(err=>console.log(err));
+  }
+  else{
+    fetch(`http://localhost:8000/appointment/getAll`)
+    .then(res=>res.json())
+    .then(result=>{
+      setResults(result);
+      console.log(result);
+    })
+    .catch(err=>console.log(err));
+  }
 };
 
 const onKeyDown = (ev)=>{
@@ -44,18 +55,7 @@ const renderResults=()=>{
       return<div>No Results</div>
     }
     if(results && results.length>0){
-      return(<div>{results.map((item)=>(
-      <div key={item.appointmentId}>
-        <h3>{item.customer.name}</h3>
-        <h5>{item.customer.email}</h5>
-        <h5>{item.customer.contactNo}</h5>
-        <p>
-          {item.customer.address.area}
-          {item.customer.address.city}
-          {item.customer.address.state}
-        </p>
-      </div>))}
-      </div>);
+      return <AppointmentGrid data={results} />
     }
     return null;
 };
