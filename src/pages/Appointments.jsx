@@ -8,6 +8,8 @@ import Title from '../components/Title'
 const Appointments = () => {
 const [input, setlnput]=useState('');
 const [results,setResults]=useState(null);
+const [option,setOption]=useState('viewAppointment');
+const isView= option==='viewAppointment';
 
 const onlnputChange = (eventObject)=>{
   setlnput(eventObject.target.value);
@@ -20,8 +22,8 @@ useEffect(()=>{
 }, [])
 
 const onSearch=()=>{
-  //fetch('http://localhost:8000/appointment/getAll')
-  fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
+  //fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
+  fetch('http://localhost:8000/appointment/getAll')
   .then(res=>res.json())
   .then(result=>{
     setResults(result);
@@ -42,10 +44,25 @@ const renderResults=()=>{
       return<div>No Results</div>
     }
     if(results && results.length>0){
-      return(<div>{results.map((item)=>(<div key={item.id}>{item.show.name}</div>))}</div>);
+      return(<div>{results.map((item)=>(
+      <div key={item.appointmentId}>
+        <h3>{item.customer.name}</h3>
+        <h5>{item.customer.email}</h5>
+        <h5>{item.customer.contactNo}</h5>
+        <p>
+          {item.customer.address.area}
+          {item.customer.address.city}
+          {item.customer.address.state}
+        </p>
+      </div>))}
+      </div>);
     }
     return null;
 };
+
+const onRadioChange=(eventObject)=>{
+  setOption(eventObject.target.value);
+}
 
   return (
     <div>
@@ -54,11 +71,11 @@ const renderResults=()=>{
       <div>
       <label htmlFor="view-appointment">
       View Appointment
-      <input id="shows-search" type="radio" value="view-appointment" />
+      <input id="view-appointment" type="radio" value="viewAppointment" checked={isView} onChange={onRadioChange} />
       </label>
       <label htmlFor='book-appointment'>
       Book Appointment
-      <input id="book-appointment" type="radio"value="people" />
+      <input id="book-appointment" type="radio"value="bookAppointment" checked={!isView} onChange={onRadioChange} />
       </label>
       </div>
       <input type="text" placeholder='Appointment ID' onChange={onlnputChange} value={input} onKeyDown={onKeyDown} />
