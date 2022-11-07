@@ -16,9 +16,9 @@ const AppointmentGrid = ({data}) => {
             appointmentPrice={appointment.salonService.servicePrice}
             appointmentDuration={appointment.salonService.serviceDuration}
             visitType={appointment.visitType}
-            prefferedDate={appointment.prefferedDate}
-            prefferedTime={appointment.prefferedTime}
-            discount={appointment.salonService.discount}       
+            prefferedDate={appointment.preferredDate}
+            prefferedTime={appointment.prefferedTime+" hrs"}
+            discount={appointment.salonService.discount+"%"}       
             />)
             }
         </FlexGrid>

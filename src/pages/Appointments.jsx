@@ -27,8 +27,9 @@ const onSearch=()=>{
     fetch(`http://localhost:8000/appointment/${input}`)
     .then(res=>res.json())
     .then(result=>{
-      setResults(result);
-      console.log(result);
+      const r=[result]
+      setResults(r);
+      console.log(r);
     })
     .catch(err=>console.log(err));
   }
