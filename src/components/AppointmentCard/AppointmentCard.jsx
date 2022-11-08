@@ -11,7 +11,7 @@ const AppointmentCard = ({id,name,image,appointmentPrice,appointmentDuration,dis
     
           <h1>{name}</h1>
           <p>Location: {location}</p>
-           <p>Visit Type: {visitType}</p>
+          <p>Visit Type: {visitType}</p>
           <p>Preffered Date: {prefferedDate}</p>
           <p>Preffered Time:{prefferedTime}</p>
           <p>Price: {appointmentPrice}</p>

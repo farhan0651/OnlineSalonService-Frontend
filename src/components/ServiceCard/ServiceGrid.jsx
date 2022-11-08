@@ -13,8 +13,8 @@ const ServiceGrid = ({data}) => {
         name={service.serviceName}
         image={service.image? service.image.medium : IMAGE_NOT_FOUND }
         servicePrice={service.servicePrice}
-        serviceDuration={service.serviceDuration}
-        discount={service.discount}       
+        serviceDuration={service.serviceDuration+" hrs"}
+        discount={service.discount+"%"}       
         />)
         }
     </FlexGrid>

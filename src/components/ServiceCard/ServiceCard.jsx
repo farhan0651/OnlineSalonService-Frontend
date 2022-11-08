@@ -15,9 +15,9 @@ const ServiceCard = ({ id, image, name, servicePrice, serviceDuration, discount 
   
         <h1>{name}</h1>
   
-        <p>{servicePrice}</p>
-        <p>{serviceDuration}</p>
-        <p>{discount}</p>
+        <p>Price: {servicePrice}</p>
+        <p>Duration: {serviceDuration}</p>
+        <p>Discount: {discount}</p>
   
         <div className='btns'>
           <Link to={`/Appointments`}>Book Appointment</Link>

@@ -14,10 +14,10 @@ const AppointmentGrid = ({data}) => {
             location={appointment.location}
             image={appointment.image? appointment.image.medium : IMAGE_NOT_FOUND }
             appointmentPrice={appointment.salonService.servicePrice}
-            appointmentDuration={appointment.salonService.serviceDuration}
+            appointmentDuration={appointment.salonService.serviceDuration+" hrs"}
             visitType={appointment.visitType}
             prefferedDate={appointment.preferredDate}
-            prefferedTime={appointment.prefferedTime+" hrs"}
+            prefferedTime={appointment.prefferedTime}
             discount={appointment.salonService.discount+"%"}       
             />)
             }
