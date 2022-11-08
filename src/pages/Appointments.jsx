@@ -1,19 +1,17 @@
 import React from 'react'
 import { useState, useEffect,useReducer } from 'react'
-import { useParams } from 'react-router';
 import axios from "axios";
 import MainPageLayout from '../components/MainPageLayout'
 import Title from '../components/Title'
 import AppointmentGrid from '../components/AppointmentCard/AppointmentGrid';
 import { RadioInputsWrapper, SearchButtonWrapper, SearchInput } from './styled';
 import BookAppointment from './BookAppointment';
-import { FlexGrid } from '../components/styled';
 
 
 const reducer=(previousState,action)=>{
   switch(action.type){
     case 'FetchSuccess':{
-      return {...previousState,results:action.results,error:null}
+      return {results:action.results,error:null}
     }
     case 'FetchFailed':{
       return {...previousState,error:action.error}
@@ -34,8 +32,6 @@ const [input, setlnput]=useState('');
 const [option,setOption]=useState('viewAppointment');
 const isView= option==='viewAppointment';
 const[{results,error},dispatch]=useReducer(reducer,initialState);
-
-const {id}=useParams();
 
 const onlnputChange = (eventObject)=>{
   setlnput(eventObject.target.value);
@@ -84,19 +80,27 @@ const renderResults=()=>{
     if(results && results.length>0){
       return <AppointmentGrid data={results} />
     }
-    if(!(option==="viewAppointment")){
+    /*if(!(isView==="viewAppointment")){
       console.log("Inside function");
       //dispatch({type:'FetchSuccess', results:null})
       return(<BookAppointment />);
-    }
+    }*/
 
     return null;
 };
 
 const onRadioChange=(eventObject)=>{
+  dispatch({type:'FetchSuccess', results:null})
   setOption(eventObject.target.value);
-  
+  //return(<BookAppointment />);
 }
+
+const bookAppointmetnShow=()=>{
+  if(!(option==="viewAppointment")){
+    console.log("Inside function");
+    //dispatch({type:'FetchSuccess', results:null})
+    return(<BookAppointment />);
+  }}
 
   return (
     <div>
@@ -119,6 +123,7 @@ const onRadioChange=(eventObject)=>{
       <SearchInput type="text" placeholder='Appointment ID' onChange={onlnputChange} value={input} onKeyDown={onKeyDown} />
       <SearchButtonWrapper><button type="button" onClick={onSearch}>Search Appointment</button></SearchButtonWrapper>
       {renderResults()}
+      {bookAppointmetnShow()}
       </MainPageLayout>
     </div>
   )
