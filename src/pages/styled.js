@@ -1,5 +1,66 @@
 import styled from "styled-components";
 
+export const H1=styled.h1`
+position: absolute;
+width: 215px;
+height: 30px;
+left: 220px;
+top: 185px;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+/* identical to box height */
+
+letter-spacing: 0.02em;
+
+color: #01091D;
+`;
+
+export const Appointmentdetails=styled.div`
+box-sizing: border-box;
+
+position: absolute;
+width: 926px;
+height: 300px;
+left: 220px;
+top: 233px;
+
+background: #FFFFFF;
+border: 1px solid rgba(87, 86, 100, 0.2);
+border-radius: 8px;
+`;
+
+export const AddressBox=styled.div`
+box-sizing: border-box;
+
+position: absolute;
+width: 430px;
+height: 436px;
+left: 220px;
+top: 565px;
+
+background: #FFFFFF;
+border: 1px solid rgba(87, 86, 100, 0.2);
+border-radius: 8px;
+`;
+
+export const CustomerDetails=styled.div`
+box-sizing: border-box;
+
+position: absolute;
+width: 430px;
+height: 336px;
+left: 716px;
+top: 565px;
+
+background: #FFFFFF;
+border: 1px solid rgba(87, 86, 100, 0.2);
+border-radius: 8px;
+`;
+
 export const SearchInput = styled.input`
   display: block;
   font-family: 'Roboto', sans-serif;
@@ -18,6 +79,8 @@ export const SearchInput = styled.input`
     color: #8d8d8d;
   }
 `;
+
+
 
 export const RadioInputsWrapper = styled.div`
   display: flex;

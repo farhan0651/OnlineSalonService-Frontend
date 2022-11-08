@@ -83,8 +83,8 @@ const Services = () => {
       </label>
       </div>
       </RadioInputsWrapper>
-      <SearchInput type="text" placeholder='Appointment ID' onChange={onlnputChange} value={input} onKeyDown={onKeyDown} />
-      <SearchButtonWrapper><button type="button" onClick={onSearch}>Search Appointment</button></SearchButtonWrapper>
+      <SearchInput type="text" placeholder='Service Name' onChange={onlnputChange} value={input} onKeyDown={onKeyDown} />
+      <SearchButtonWrapper><button type="button" onClick={onSearch}>Search Service</button></SearchButtonWrapper>
       {renderResults()}
       </MainPageLayout>
     </div>

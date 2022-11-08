@@ -6,6 +6,8 @@ import MainPageLayout from '../components/MainPageLayout'
 import Title from '../components/Title'
 import AppointmentGrid from '../components/AppointmentCard/AppointmentGrid';
 import { RadioInputsWrapper, SearchButtonWrapper, SearchInput } from './styled';
+import BookAppointment from './BookAppointment';
+import { FlexGrid } from '../components/styled';
 
 
 const reducer=(previousState,action)=>{
@@ -82,14 +84,18 @@ const renderResults=()=>{
     if(results && results.length>0){
       return <AppointmentGrid data={results} />
     }
+    if(!(option==="viewAppointment")){
+      console.log("Inside function");
+      //dispatch({type:'FetchSuccess', results:null})
+      return(<BookAppointment />);
+    }
+
     return null;
 };
 
 const onRadioChange=(eventObject)=>{
   setOption(eventObject.target.value);
- // if(option==="viewAppointment"){
-
-//  }
+  
 }
 
   return (
