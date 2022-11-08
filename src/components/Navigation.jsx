@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { LinkStyled, NavList } from './styled';
 
 const Navigation = () => {
+  const location=useLocation();
   const LINKS=[
     {to:'/',text:"Homepage"},
     {to:"/Appointments",text:"Appointment"},
@@ -11,9 +13,9 @@ const Navigation = () => {
   ]
     return (
     <div>
-        <ul>{LINKS.map((item)=>(
-            <li key={item.to}><Link to={item.to}>{item.text}</Link></li>
-        ))}</ul>
+        <NavList>{LINKS.map((item)=>(
+            <LinkStyled key={item.to} className={item.to===location.pathname ? 'active':''}><Link to={item.to}>{item.text}</Link></LinkStyled>
+        ))}</NavList>
     </div>
   )
 }

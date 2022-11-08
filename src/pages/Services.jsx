@@ -4,6 +4,7 @@ import axios from "axios";
 import MainPageLayout from '../components/MainPageLayout'
 import ServiceGrid from '../components/ServiceCard/ServiceGrid'
 import Title from '../components/Title'
+import { RadioInputsWrapper, SearchButtonWrapper, SearchInput } from './styled';
 
 const Services = () => {
   const [input, setlnput]=useState('');
@@ -68,18 +69,22 @@ const Services = () => {
     <div>
       <Title title="Service" subtitle="These are the services which we offer" />
       <MainPageLayout>
-      <div>
+      <RadioInputsWrapper>
+        <div>
       <label htmlFor="view-service">
       View Service
       <input id="view-service" type="radio" value="viewService" checked={isView} onChange={onRadioChange} />
       </label>
+      </div>
+      <div>
       <label htmlFor='book-appointment'>
       Services available
       <input id="all-servies" type="radio"value="allService" checked={!isView} onChange={onRadioChange} />
       </label>
       </div>
-      <input type="text" placeholder='Appointment ID' onChange={onlnputChange} value={input} onKeyDown={onKeyDown} />
-      <button type="button" onClick={onSearch}>Search Appointment</button>
+      </RadioInputsWrapper>
+      <SearchInput type="text" placeholder='Appointment ID' onChange={onlnputChange} value={input} onKeyDown={onKeyDown} />
+      <SearchButtonWrapper><button type="button" onClick={onSearch}>Search Appointment</button></SearchButtonWrapper>
       {renderResults()}
       </MainPageLayout>
     </div>

@@ -5,6 +5,7 @@ import axios from "axios";
 import MainPageLayout from '../components/MainPageLayout'
 import Title from '../components/Title'
 import AppointmentGrid from '../components/AppointmentCard/AppointmentGrid';
+import { RadioInputsWrapper, SearchButtonWrapper, SearchInput } from './styled';
 
 
 const reducer=(previousState,action)=>{
@@ -86,24 +87,31 @@ const renderResults=()=>{
 
 const onRadioChange=(eventObject)=>{
   setOption(eventObject.target.value);
+ // if(option==="viewAppointment"){
+
+//  }
 }
 
   return (
     <div>
       <Title title="Appointment" subtitle="Have a look at the services for which you can book an appointment" />
       <MainPageLayout>
+      <RadioInputsWrapper>
       <div>
       <label htmlFor="view-appointment">
       View Appointment
       <input id="view-appointment" type="radio" value="viewAppointment" checked={isView} onChange={onRadioChange} />
       </label>
+      </div>
+      <div>
       <label htmlFor='book-appointment'>
       Book Appointment
       <input id="book-appointment" type="radio"value="bookAppointment" checked={!isView} onChange={onRadioChange} />
       </label>
       </div>
-      <input type="text" placeholder='Appointment ID' onChange={onlnputChange} value={input} onKeyDown={onKeyDown} />
-      <button type="button" onClick={onSearch}>Search Appointment</button>
+      </RadioInputsWrapper>
+      <SearchInput type="text" placeholder='Appointment ID' onChange={onlnputChange} value={input} onKeyDown={onKeyDown} />
+      <SearchButtonWrapper><button type="button" onClick={onSearch}>Search Appointment</button></SearchButtonWrapper>
       {renderResults()}
       </MainPageLayout>
     </div>

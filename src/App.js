@@ -4,9 +4,19 @@ import Appointments from "./pages/Appointments";
 import Oders from "./pages/Oders";
 import Services from "./pages/Services";
 import Payment from "./pages/Payment";
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  mainColors: {
+    blue: '#2400ff',
+    gray: '#c6c6c6',
+    dark: '#353535',
+  },
+};
 
 function App() {
     return (
+      <ThemeProvider theme={theme}>
       <div>
           <Routes>
             <Route exact path="/" element={<Homepage/>} />
@@ -17,6 +27,7 @@ function App() {
             <Route path="*" element={<p>ERROR:404 <strong>Page not found</strong></p>} />
           </Routes>
         </div>
+        </ThemeProvider>
     );
 }
 
