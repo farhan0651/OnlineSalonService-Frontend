@@ -6,6 +6,7 @@ const Navigation = () => {
   const location=useLocation();
   const LINKS=[
     {to:'/',text:"Homepage"},
+    {to:'/Myprofile',text:"My Profile"},
     {to:"/Appointments",text:"Appointment"},
     {to:'/Orders',text:"Orders"},
     {to:'/Services',text:"Service"},

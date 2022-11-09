@@ -1,8 +1,6 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 
-
-
 const MyprofileGrid = ({ data }) => {
   return (
     <div>

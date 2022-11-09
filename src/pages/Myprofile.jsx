@@ -4,7 +4,7 @@ import { useState } from 'react'
 import MainPageLayout from '../components/MainPageLayout'
 import Title from '../components/Title'
 //import { isHtmlElement } from 'react-router-dom/dist/dom';
-import MyprofileGrid from '../components/MyprofileCard/MyprofileGrid'
+import MyprofileGrid from '../components/Myprofile/MyprofileGrid'
 
 const Myprofile = () => {
 
@@ -14,7 +14,7 @@ const [input, setlnput] = useState("");
     setlnput(eventObject.target.value);
   };
   const onSearch = () => {
-    fetch(`http://localhost:8000/customer/${input}`)
+    fetch(`http://localhost:8000/Customer/${input}`)
       .then((res) => res.json())
       .then((result) => {
         setResults([result]);

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ListCard = ({cardList}) => {
-
+    return(
     <div>
     <h6>Cards List</h6>
     <div>
@@ -21,7 +21,7 @@ const ListCard = ({cardList}) => {
             })
         }
         </div>
-    </div>
+    </div>);
 
 }
 
