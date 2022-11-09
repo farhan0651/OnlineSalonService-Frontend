@@ -1,8 +1,9 @@
 import React from 'react'
+import { CardListBox } from '../styled';
 
 const ListCard = ({cardList}) => {
     return(
-    <div>
+    <CardListBox>
     <h6>Cards List</h6>
     <div>
         {
@@ -21,7 +22,7 @@ const ListCard = ({cardList}) => {
             })
         }
         </div>
-    </div>);
+    </CardListBox>);
 
 }
 

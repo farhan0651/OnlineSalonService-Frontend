@@ -106,7 +106,7 @@ const AddCard = ({setCardList}) => {
         return errors;
     };*/
   return (
-    <div>
+    <AddCard>
     <h6>Add Card</h6>
     <form action="" onSubmit={handleSubmit}>
         <div class="mb-3">
@@ -161,7 +161,7 @@ const AddCard = ({setCardList}) => {
         <button type='submit' class="btn btn-primary" >Add Card</button>
         
     </form>
-    </div>
+    </AddCard>
   )
 }
 

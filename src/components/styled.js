@@ -159,3 +159,31 @@ p {
 }
 
 `;
+
+export const CardListBox=styled.div`
+box-sizing: border-box;
+
+position: absolute;
+width: 509px;
+height: 351px;
+left: 697px;
+top: 516px;
+
+background: #FFFFFF;
+border: 1px solid rgba(87, 86, 100, 0.2);
+border-radius: 8px;
+`;
+
+export const AddCard=styled.div`
+box-sizing: border-box;
+
+position: absolute;
+width: 430px;
+height: 464px;
+left: 160px;
+top: 516px;
+
+background: #FFFFFF;
+border: 1px solid rgba(87, 86, 100, 0.2);
+border-radius: 8px;
+`;
