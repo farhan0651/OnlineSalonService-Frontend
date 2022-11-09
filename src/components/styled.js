@@ -108,3 +108,54 @@ export const TitleWrapper = styled.div`
     margin: 0;
   }
 `;
+
+export const Box = styled.div`box-sizing: border-box;
+
+position: absolute;
+width: 1200px;
+height: 130px;
+left: 100px;
+top: 190px;
+
+
+
+background: white;
+
+`;
+
+export const Box1 = styled.div`width: 300px;
+height: 100%;
+margin: 0 15px 40px;
+
+
+  .Rectangle {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 216px;
+    height: 275px;
+    left: 443px;
+    top: 150px;
+
+    background: #FFFFFF;
+    border: 1px solid rgba(87, 86, 100, 0.2);
+    border-radius: 8px;
+  }
+  table{
+    border-collapse: separate;
+    border-spacing: 60px 0;
+  }
+  td{
+    padding:10px0;
+  }
+
+h3 {
+  margin: 20px 0;
+  font-size: 21px;
+}
+
+p {
+  margin: 5;
+}
+
+`;

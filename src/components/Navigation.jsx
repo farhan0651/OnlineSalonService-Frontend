@@ -7,9 +7,9 @@ const Navigation = () => {
   const LINKS=[
     {to:'/',text:"Homepage"},
     {to:"/Appointments",text:"Appointment"},
-    {to:'/Oders',text:"Oders"},
+    {to:'/Orders',text:"Orders"},
     {to:'/Services',text:"Service"},
-    {to:'/Payment',text:"Payment"}
+    {to:'/MyCards',text:"MyCards"}
   ]
     return (
     <div>
