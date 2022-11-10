@@ -5,6 +5,7 @@ import MainPageLayout from '../components/MainPageLayout'
 import Title from '../components/Title'
 //import { isHtmlElement } from 'react-router-dom/dist/dom';
 import MyprofileGrid from '../components/Myprofile/MyprofileGrid'
+import { SearchButtonWrapper, SearchInput } from './styled'
 
 const Myprofile = () => {
 
@@ -42,22 +43,18 @@ const [input, setlnput] = useState("");
     <div>
       <Title title="My Profile" subtitle="Enter the Customer Id to look your Profile" />
       <MainPageLayout>
-        <div>
-          <label htmlFor="view-Myprofile">
-            View Myprofile
-            <input id="shows-search" type="radio" value="view-orders" />
-          </label>
-        </div>
-        <input
+        <SearchInput
           type="text"
           placeholder="CustomerId"
           onChange={onlnputChange}
           value={input}
           onKeyDown={onKeyDown}
         />
+        <SearchButtonWrapper>
         <button type="button" onClick={onSearch}>
           Search Orders
         </button>
+        </SearchButtonWrapper>
         {renderResults()}
       </MainPageLayout>
     </div>

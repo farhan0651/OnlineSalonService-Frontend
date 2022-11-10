@@ -78,35 +78,8 @@ const AddCard = ({setCardList}) => {
         return isValid;
         
     }
-
-    /*useEffect(()=>{
-        console.log(formErrors);
-        if(Object.keys(formErrors).length === 0 && isSubmit){
-            console.log(cardDetails);
-        }
-    },[formErrors,cardDetails,isSubmit])*/
-
-    /*const validate = (values) => {
-        const errors = {};
-        //const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-        if(!values.cardName){
-            errors.cardName = "Card Name is required";
-        }
-        if(!values.cardNumber){
-            errors.cardNumber = "Card Number is required";
-        }else if (values.cardNumber !== 6){
-            errors.cardNumber= "Card Number Should be 6 digit"
-        }
-        if(!values.expiryDate){
-            errors.expiryDate = "Expiry Date is required";
-        }
-        if(!values.bankName){
-            errors.bankName = "Bank Name is required";
-        }
-        return errors;
-    };*/
   return (
-    <AddCard>
+    <div>
     <h6>Add Card</h6>
     <form action="" onSubmit={handleSubmit}>
         <div class="mb-3">
@@ -161,7 +134,7 @@ const AddCard = ({setCardList}) => {
         <button type='submit' class="btn btn-primary" >Add Card</button>
         
     </form>
-    </AddCard>
+    </div>
   )
 }
 

@@ -15,29 +15,13 @@ const MyCards = () => {
       setCardList(resp.data)
   })
   .catch(err=>console.log(err));
-
-    
-    
-    // setCardList([{
-    //   cardName: "kjef",
-    //   cardNumber: "ysgdfj",
-    //   expiryDate:"ehbfkasd",
-    //   bankName:"HDFC"
-    // },{
-    //   cardName: "bbbb",
-    //   cardNumber: "zzzz",
-    //   expiryDate:"ehbfxxx",
-    //   bankName:"HDFCdsdsfd"
-    // },])
-
-    
     return () => {
     }
   }, [])
   
   return (
     <div>
-      <Title title="MyProfile" subtitle="These are the payment details for (username)" />
+      <Title title="My Cards" subtitle="These are the card details" />
       <MainPageLayout>This is My Profile page</MainPageLayout>
       <div className='d-flex'>
         <AddCard setCardList={setCardList}/>

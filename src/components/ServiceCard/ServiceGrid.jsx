@@ -11,7 +11,7 @@ const ServiceGrid = ({data}) => {
         key={service.serviceId}
         id={service.serviceId}
         name={service.serviceName}
-        image={service.image? service.image.medium : IMAGE_NOT_FOUND }
+        image={service.url? service.url : IMAGE_NOT_FOUND }
         servicePrice={service.servicePrice}
         serviceDuration={service.serviceDuration+" hrs"}
         discount={service.discount+"%"}       

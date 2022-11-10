@@ -24,7 +24,7 @@ box-sizing: border-box;
 
 position: absolute;
 width: 926px;
-height: 300px;
+height: 320px;
 left: 220px;
 top: 233px;
 
@@ -38,7 +38,7 @@ box-sizing: border-box;
 
 position: absolute;
 width: 430px;
-height: 436px;
+height: 96px;
 left: 220px;
 top: 565px;
 
@@ -52,7 +52,7 @@ box-sizing: border-box;
 
 position: absolute;
 width: 430px;
-height: 336px;
+height: 170px;
 left: 716px;
 top: 565px;
 
@@ -180,5 +180,27 @@ export const TitleWrapper = styled.div`
   p {
     color: ${({ theme }) => theme.mainColors.dark};
     margin: 0;
+  }
+`;
+
+export const SearchButtonWrapper2 = styled.div`
+  text-align: center;
+  margin-bottom: 35px;
+  position: absolute;
+  left:580px;
+  top: 760px;
+  
+  button {
+    color: #fff;
+    background-color: ${({ theme }) => theme.mainColors.blue};
+    margin: auto;
+    padding: 10px 50px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;

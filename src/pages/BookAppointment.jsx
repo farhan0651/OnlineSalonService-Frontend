@@ -1,30 +1,47 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { AddressBox, Appointmentdetails, CustomerDetails, H1, RadioInputsWrapper, SearchButtonWrapper, SearchInput } from './styled'
+import { AddressBox, Appointmentdetails, CustomerDetails, H1, SearchButtonWrapper2, SearchInput } from './styled'
 
 const BookAppointment = () => {
         const [appointmentDetails, setappointmentDetails] = useState({
             visitType:"",
-            prefferedDate:null,
-            prefferedTime:null,
-            location:""
-        }) 
-
-        const [addressDetails, setaddressDetails] = useState({
-            doorNo:"",
-            state:"",
-            city:"",
-            pinCode:"",
-            area:"",
-            stree:""
-        }) 
-
-        const [customerDetails, setcustomerDetails] = useState({
-            name:"",
-            email:"",
-            contactNo:"",
-            dateOfBirth:""
+            preferredDate:"",
+            preferredTime:"",
+            location:"",
+            customer: {
+                name: "",
+                email: "",
+                contactNo: "",
+                dob: "",
+                user1: {
+                userId: 0,
+                userName: "",
+                password: ""
+                },
+                address: {
+                door_no: "",
+                street: "",
+                area: "",
+                city: "",
+                state: "",
+                pincode: 0
+                },
+                userId: 0
+                },
+                salonService: {
+                    serviceId: 0,
+                    serviceName: "",
+                    servicePrice: "",
+                    serviceDuration: "",
+                    discount: 0
+                    },
+            payment: {
+                paymentId: 1,
+                type: "",
+                status: "",
+                card: null
+                }
         }) 
     
     
@@ -34,13 +51,28 @@ const BookAppointment = () => {
             console.log(name, value);
             setappointmentDetails({ ...appointmentDetails, [name]: value})
         }
+        const handleCustomerInput = (e)=>{
+            const { name, value } = e.target;
+            setappointmentDetails(prevValues => {
+                return {...prevValues, customer:{...prevValues.customer, [name]:value}}})
+        }
+        // const handleSalonServiceInput = (e)=>{
+        //     const { name, value } = e.target;
+        //     setappointmentDetails(prevValues => {
+        //         return {...prevValues, salonService:{...prevValues.customer, [name]:value}}})
+        // }
+        // const handlePaymentInput = (e)=>{
+        //     const { name, value } = e.target;
+        //     setappointmentDetails(prevValues => {
+        //         return {...prevValues, payment:{...prevValues.customer, [name]:value}}})
+        // }
     
         const handleSubmit = (e)=>{
             axios.post("http://localhost:8000/appointment/addAppointment",appointmentDetails)
             .then(resp=>{
-                // let newappointment = {...appointmentDetails, id:resp.id};
-                // setappointmentList(prev=>[...prev, newappointment]);
-                // setappointmentDetails({appointmentName:"", appointmentNumber:"", expiryDate:"",bankName:""});
+                let newappointment = {...appointmentDetails, id:resp.id};
+                setappointmentDetails(prev=>[...prev, newappointment]);
+                //setappointmentDetails({initialValues});
             })
             .catch(err=>console.log(err));
             
@@ -48,13 +80,13 @@ const BookAppointment = () => {
       return (
         <div>
         <H1>Book Appointment</H1>
-        <form action="POST" onSubmit={handleSubmit}>
+        <form action="" onSubmit={handleSubmit}>
             <Appointmentdetails>
             <div>
                 <label htmlFor='visitType'>Visit Type</label>
                 <SearchInput type= 'text' autoComplete='off' 
                 value={appointmentDetails.visitType}
-                placeholder="Enter Bank Name"
+                placeholder="Visit Type"
                 onChange={handleInput}
                 name='visitType' id='visitType'/>
             </div>
@@ -67,108 +99,84 @@ const BookAppointment = () => {
                 name='location' id='location'/>
             </div>
             <div>
-                <label htmlFor='prefferedDate'>Preffered Date</label>
-                <SearchInput type= 'date' autoComplete='off' 
-                value={appointmentDetails.prefferedDate}
+                <label htmlFor='preferredDate'>Preffered Date</label>
+                <SearchInput type= 'Date' autoComplete='off' 
+                value={appointmentDetails.preferredDate}
                 placeholder="Preffered Date"
                 onChange={handleInput}
-                name='prefferedDate' id='prefferedDate'/>
+                name='prefferredDate' id='prefferredDate'/>
             </div>
             <div>
-                <label htmlFor='prefferedTime'>Preffered Time</label>
+                <label htmlFor='preferredTime'>Preffered Time</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails.prefferedTime}
+                value={appointmentDetails.preferredTime}
                 placeholder="Preffered Time"
                 onChange={handleInput}
-                name='prefferedTime' id='prefferedTime'/>
+                name='preferredTime' id='preferredTime'/>
             </div>
             </Appointmentdetails>
             <AddressBox>
             <div>
-                <label htmlFor='doorNo'>Door Number</label>
+                <label htmlFor='customerId'>Customer ID</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={addressDetails.doorNo}
-                placeholder="Door No."
+                value={appointmentDetails.customerId}
+                placeholder="Customer ID"
                 onChange={handleInput}
-                name='doorNo' id='doorNo'/>
-            </div>
-            <div>
-                <label htmlFor='street'>Street</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={addressDetails.street}
-                placeholder="Street"
-                onChange={handleInput}
-                name='street' id='street'/>
-            </div>
-            <div>
-                <label htmlFor='area'>Area</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={addressDetails.area}
-                placeholder="Area"
-                onChange={handleInput}
-                name='area' id='area'/>
-            </div>
-            <div>
-                <label htmlFor='city'>City</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={addressDetails.city}
-                placeholder="City"
-                onChange={handleInput}
-                name='city' id='city'/>
-            </div>
-            <div>
-                <label htmlFor='state'>State</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={addressDetails.state}
-                placeholder="State"
-                onChange={handleInput}
-                name='state' id='state'/>
-            </div>
-            <div>
-                <label htmlFor='pinCode'>Pin Code</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={addressDetails.pinCode}
-                placeholder="Pin Code"
-                onChange={handleInput}
-                name='pinCode' id='pinCode'/>
+                name='customerId' id='customerId'/>
             </div>
             </AddressBox>
 
             <CustomerDetails>
             <div>
-                <label htmlFor='name'>Name</label>
+                <label htmlFor='area'>Area</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={customerDetails.name}
-                placeholder="Name"
-                onChange={handleInput}
-                name='name' id='name'/>
+                //value={appointmentDetails.area}
+                placeholder="Service ID"
+                onChange={handleCustomerInput}
+                name='area' id='area'/>
             </div>
             <div>
-                <label htmlFor='email'>Email</label>
+                <label htmlFor='city'>City</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={customerDetails.email}
-                placeholder="Email"
-                onChange={handleInput}
-                name='email' id='email'/>
+                //value={appointmentDetails.city}
+                placeholder="City"
+                onChange={handleCustomerInput}
+                name='city' id='city'/>
             </div>
             <div>
-                <label htmlFor='contactNo'>Contact No.</label>
+                <label htmlFor='door_no'>Door Number</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={customerDetails.contactNo}
-                placeholder="Contact Number"
-                onChange={handleInput}
-                name='contactNo' id='contactNo'/>
+                //value={appointmentDetails.door_no}
+                placeholder="Door Number"
+                onChange={handleCustomerInput}
+                name='door_no' id='door_no'/>
             </div>
             <div>
-                <label htmlFor='dateOfBirth'>Date Of Birth</label>
-                <SearchInput type= 'date' autoComplete='off' 
-                value={customerDetails.dateOfBirth}
-                placeholder="Date Of Birth"
-                onChange={handleInput}
-                name='dateOfBirth' id='dateOfBirth'/>
+                <label htmlFor='pincode'>Pincode</label>
+                <SearchInput type= 'text' autoComplete='off' 
+                //value={appointmentDetails.pincode}
+                placeholder="Pincode"
+                onChange={handleCustomerInput}
+                name='pincode' id='pincode'/>
+            </div>
+            <div>
+                <label htmlFor='state'>State</label>
+                <SearchInput type= 'text' autoComplete='off' 
+                //value={appointmentDetails.state}
+                placeholder="State"
+                onChange={handleCustomerInput}
+                name='state' id='state'/>
+            </div>
+            <div>
+                <label htmlFor='street'>Street</label>
+                <SearchInput type= 'text' autoComplete='off' 
+                //value={appointmentDetails.street}
+                placeholder="Street"
+                onChange={handleCustomerInput}
+                name='street' id='street'/>
             </div>
             </CustomerDetails>
-            <SearchButtonWrapper><button type='submit'>Add appointment</button></SearchButtonWrapper>
+            <SearchButtonWrapper2><button type='submit'>Add appointment</button></SearchButtonWrapper2>
             
         </form>
         </div>
