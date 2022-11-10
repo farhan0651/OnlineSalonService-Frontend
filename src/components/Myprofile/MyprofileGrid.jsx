@@ -1,30 +1,27 @@
 import React from "react";
-import Table from 'react-bootstrap/Table';
+import Myprofilecard from "./Myprofilecard";
+import { Box, Box1 } from "../styled";
+import Myprofile from "../../pages/Myprofile";
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const MyprofileGrid = ({ data }) => {
+  
   return (
-    <div>
-      <Table striped bordered hover size="sm">
-      <thead>
-        <tr>
-          <th>Customer_Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>DOB</th>
-        </tr>
-      </thead>
-      <tbody>
+    <Box>
+      <div className="row p-5"  >
       {data.map((Myprofile) => (
-        <tr>
-        <td>{Myprofile.customerId}</td>
-        <td>{Myprofile.name}</td>
-        <td>{Myprofile.email}</td>
-        <td>{Myprofile.dob}</td>
-      </tr>
+        <Myprofilecard
+          key={Myprofile.userId}
+          id={Myprofile.userId}
+          Email={Myprofile.email}
+          Dob={Myprofile.dob}
+          Contact={Myprofile.contactNo}
+          Name={Myprofile.name}
+        />
       ))}
-      </tbody>
-      </Table>
-    </div>
+      </div>
+    </Box>
   );
 };
 

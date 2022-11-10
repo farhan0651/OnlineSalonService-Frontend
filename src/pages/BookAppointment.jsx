@@ -59,7 +59,7 @@ const BookAppointment = () => {
         const handleCustomerInput = (e)=>{
             const { name, value } = e.target;
             setappointmentDetails(prevValues => {
-                return {...prevValues, customer:value}})
+                return {...prevValues, customer:{...prevValues.customer,[name]:value}}})
             // setappointmentDetails({
             //     ...appointmentDetails,
             //     customer:{
@@ -92,7 +92,7 @@ const BookAppointment = () => {
             
         }
       return (
-        <div>
+        <div className="card">
         <H1>Book Appointment</H1>
         <form action="" onSubmit={handleSubmit}>
             <Appointmentdetails>
@@ -133,7 +133,7 @@ const BookAppointment = () => {
             <div>
                 <label htmlFor='customerId'>Customer ID</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails?.customer}
+                value={appointmentDetails?.customer?.customerId}
                 placeholder="Customer ID"
                 onChange={handleCustomerInput}
                 name='customerId' id='customerId'/>

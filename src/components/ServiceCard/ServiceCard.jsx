@@ -6,10 +6,11 @@ const ServiceCard = ({ id, image, name, servicePrice, serviceDuration, discount 
     /*const summaryAsText = summary
       ? `${summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, "")}...`
       : 'No description';*/
-  
+      console.log(image)
     return (
       <StyledServiceCard>
         <div className='img-wrapper'>
+        {/* <img src={require({image})} alt="service" /> */}
           <img src={image} alt="service" />
         </div>
   

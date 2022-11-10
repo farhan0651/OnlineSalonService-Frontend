@@ -37,8 +37,8 @@ const MyCards = () => {
   
   return (
     <div>
-      <Title title="MyCard"/>
       <MainPageLayout>
+      <Title title="MyCard"/>
       <div className='d-flex'>
       {/* Callin Add card file from components and updating card list */}
         <AddCard setCardList={setCardList}/>

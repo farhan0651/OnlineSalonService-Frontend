@@ -1,6 +1,7 @@
 import React from "react";
 //import { Link } from "react-router-dom";
 import { Box1 } from "../styled";
+import { Button } from "react-bootstrap";
 
 import { useState } from "react";
 const OrderCard = ({
@@ -17,7 +18,7 @@ const OrderCard = ({
 
   const OnDelete = () => {
     // DELETE request using fetch with error handling
-    fetch(`http://localhost:8000/orders/deleteOrder/${id}`, {
+    fetch(`http://localhost:8756/orders/deleteOrder/${id}`, {
       method: "DELETE",
     })
       .then(async (response) => {
@@ -43,7 +44,7 @@ const OrderCard = ({
   };
 
   return (
-    <Box1>
+    /*<Box1>
       <table>
         <tr>
           <td>
@@ -61,7 +62,7 @@ const OrderCard = ({
             <h3> Offer(%) </h3>
           </td>
           <td>
-            <h3> VisitType </h3>
+            <h3> Paymentstatus </h3>
           </td>
 
           <td>
@@ -98,7 +99,28 @@ const OrderCard = ({
           </td>
         </tr>
       </table>
-    </Box1>
+    </Box1>*/
+
+    <div className="col-sm-6 col-md-4">
+      <div className="card border-white card text-bg-light">
+        <div className="card-header">
+          <b>My Orders</b>
+        </div>
+        <div className="card-body">
+          <p className="card-text">Order Id - {id}</p>
+          <p className="card-text">Service- {appointment}</p>
+          <p className="card-text"> Amount - {appointment3}</p>
+          <p className="card-text">Offer(%)- {discount}</p>
+          <p className="card-text">Paymentstatus- {appointment1}</p>
+          <p className="card-text">PaymentMethod- {paymentMethod}</p>
+          <p className="card-text">BillingDate- {billingDate}</p>
+
+          <Button onClick={ClickHandle} variant="primary">
+            Delete
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 };
 

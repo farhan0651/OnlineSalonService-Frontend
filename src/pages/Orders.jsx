@@ -37,8 +37,8 @@ const Orders = () => {
 
   return (
     <div>
-      <Title title="My Orders" subtitle="Have a Look At your All Orders" />
       <MainPageLayout>
+      <Title title="My Orders" subtitle="Have a Look At your All Orders" />
         {renderResults()}
       </MainPageLayout>
     </div>

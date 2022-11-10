@@ -104,8 +104,8 @@ const bookAppointmetnShow=()=>{
 
   return (
     <div>
-      <Title title="Appointment" subtitle="Have a look at the services for which you can book an appointment" />
       <MainPageLayout>
+      <Title title="Appointment" subtitle="Have a look at the services for which you can book an appointment" />
       <RadioInputsWrapper>
       <div>
       <label htmlFor="view-appointment">

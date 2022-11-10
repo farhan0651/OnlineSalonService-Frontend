@@ -110,26 +110,26 @@ const AddCard = ({setCardList}) => {
     {/* Heading for Add Card */}
     <h4 style={{
           fontWeight:"800",
-          marginLeft: "250px",
+          marginLeft: "380px",
         }}>Add Card</h4>
 
     {/* Form to Add Card */}
     <form action="" onSubmit={handleSubmit} className="card" style={{
         width:"350px",
-        marginLeft: "250px",
+        marginLeft: "380px",
         marginRight: "120px",
           padding: "30px 25px",
           marginTop: "20px"
         }}>
         {/* Card Name Input */}
         <div class="mb-3">
-            <label htmlFor='cardName' class="form-label" style={{fontWeight:"600"}}>Card Name</label>
+            <label htmlFor='cardName' className="form-label" style={{fontWeight:"600"}}>Card Name</label>
             <br />
             <input type= 'text' autoComplete='off' 
             value={cardDetails.cardName}
             placeholder="Enter Card Name"
             onChange={handleInput}
-            name='cardName' id='cardName' class="form-control"/>
+            name='cardName' id='cardName' className="form-control"/>
         </div>
         {/* For Showing Error Below Text Field */}
         {Object.keys(cardNameErr).map((key)=>{
@@ -137,39 +137,39 @@ const AddCard = ({setCardList}) => {
         })}
         {/* Card Number Input */}
         <div class="mb-3">
-            <label htmlFor='cardNumber' class="form-label" style={{fontWeight:"600"}}>Card Number</label>
+            <label htmlFor='cardNumber' className="form-label" style={{fontWeight:"600"}}>Card Number</label>
             <br />
             <input type= 'text' autoComplete='off' 
             value={cardDetails.cardNumber}
             placeholder="Enter Card Number"
             onChange={handleInput}
-            name='cardNumber' id='cardNumber' class="form-control"/>
+            name='cardNumber' id='cardNumber' className="form-control"/>
         </div>
         {Object.keys(cardNumberErr).map((key)=>{
             return <div style={{color:"red", fontSize:"13px"}}>{cardNumberErr[key]}</div>
         })}
         {/* Expiry Date Input */}
         <div class="mb-3">
-            <label htmlFor='expiryDate' class="form-label" style={{fontWeight:"600"}}>Expiry Date</label>
+            <label htmlFor='expiryDate' className="form-label" style={{fontWeight:"600"}}>Expiry Date</label>
             <br />
             <input type= 'date' autoComplete='off' 
             value={cardDetails.expiryDate}
             placeholder="Enter Expiry Date"
             onChange={handleInput}
-            name='expiryDate' id='expiryDate' class="form-control"/>
+            name='expiryDate' id='expiryDate' className="form-control"/>
         </div>
         {Object.keys(expiryDateErr).map((key)=>{
             return <div style={{color:"red", fontSize:"13px"}}>{expiryDateErr[key]}</div>
         })}
         {/* Bank Name Input */}
         <div class="mb-3">
-            <label htmlFor='bankName' class="form-label" style={{fontWeight:"600"}}>Bank Name</label>
+            <label htmlFor='bankName' className="form-label" style={{fontWeight:"600"}}>Bank Name</label>
             <br />
             <input type= 'text' autoComplete='off' 
             value={cardDetails.bankName}
             placeholder="Enter Bank Name"
             onChange={handleInput}
-            name='bankName' id='bankName' class="form-control"/>
+            name='bankName' id='bankName' className="form-control"/>
         </div>
         {Object.keys(bankNameErr).map((key)=>{
             return <div style={{color:"red", fontSize:"13px"}}>{bankNameErr[key]}</div>

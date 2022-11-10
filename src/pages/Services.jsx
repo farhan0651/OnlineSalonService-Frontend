@@ -67,8 +67,8 @@ const Services = () => {
 
   return (
     <div>
-      <Title title="Service" subtitle="These are the services which we offer" />
       <MainPageLayout>
+      <Title title="Service" subtitle="These are the services which we offer" />
       <RadioInputsWrapper>
         <div>
       <label htmlFor="view-service">

@@ -6,6 +6,7 @@ import Services from "./pages/Services";
 import MyCards from "./pages/MyCards";
 import { ThemeProvider } from 'styled-components';
 import Myprofile from './pages/Myprofile';
+import Myprofile1 from './pages/MyProfile1';
 
 const theme = {
   mainColors: {
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Homepage/>} />
             <Route exact path="/Myprofile" element={<Myprofile />} />
+            <Route exact path="/Myprofile1" element={<Myprofile1 />} />
             <Route exact path="/Appointments" element={<Appointments />} />
             <Route exact path="/MyCards" element={<MyCards />} />
             <Route exact path="/Orders" element={<Orders />} />

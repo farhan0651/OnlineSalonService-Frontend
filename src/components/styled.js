@@ -14,7 +14,7 @@ width: 300px;
 
   .img-wrapper {
     width: 100%;
-    border-radius: 40px;
+    border-radius: 20px;
     height: 420px;
     overflow: hidden;
     border: 1px solid #ddd;
@@ -109,18 +109,16 @@ export const TitleWrapper = styled.div`
   }
 `;
 
-export const Box = styled.div`box-sizing: border-box;
+export const Box = styled.div`
+  box-sizing: border-box;
 
-position: absolute;
-width: 1200px;
-height: 130px;
-left: 100px;
-top: 220px;
+  position: absolute;
+  width: 1200px;
+  height: 130px;
+  left: 100px;
+  top: 190px;
 
-
-
-background: white;
-
+  background: white;
 `;
 
 export const Box1 = styled.div`width: 300px;
@@ -186,5 +184,31 @@ top: 516px;
 background: #FFFFFF;
 border: 1px solid rgba(87, 86, 100, 0.2);
 border-radius: 8px;
+`;
+
+export const Pg=styled.div`
+body {
+  background-color: #111;
+}
+
+.js-type-writer {
+  font-size: 18px;
+  font-family: sans-serif;
+  color: blue;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.js-type-writer > span {
+  border-right: .05em solid;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
 `;
 
