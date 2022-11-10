@@ -90,10 +90,10 @@ const [formValues, setFormValues] = useState(initialValues);
 
       <form action="/Homepage" onSubmit={handleSubmit} className="card" style={{
         width:"350px",
-        marginLeft: "250px",
+        marginLeft: "465px",
         marginRight: "120px",
           padding: "30px 25px",
-          marginTop: "20px"
+          marginTop: "20px",
         }}>
         <h3 style={{
           fontWeight:"800"

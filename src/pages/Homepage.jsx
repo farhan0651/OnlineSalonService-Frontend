@@ -31,7 +31,7 @@ const Homepage = () => {
     }
     const back="https://images.unsplash.com/photo-1595475884562-073c30d45670?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80";
   return (
-    <div style={{backgroundImage: `url(${back})`}}>
+    <div style={{backgroundImage: `url(${back})`,backgroundRepeat:'noRepeat'}}>
       <MainPageLayout>
       <Title title="Homepage" subtitle="Get The Service YOU WANT!! We'll style while you smile!" />
       <SearchButtonWrapper>

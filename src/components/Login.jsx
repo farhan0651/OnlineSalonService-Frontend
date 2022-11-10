@@ -90,7 +90,7 @@ function UserLogin() {
 
       <form className='form card' onSubmit={handleSubmit} style={{
         width:"350px",
-        marginLeft: "250px",
+        marginLeft: "465px",
         marginRight: "120px",
           padding: "30px 25px",
           marginTop: "20px"
