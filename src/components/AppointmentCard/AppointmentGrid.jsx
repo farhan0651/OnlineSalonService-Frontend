@@ -10,15 +10,15 @@ const AppointmentGrid = ({data}) => {
             data.map((appointment)=><AppointmentCard
             key={appointment.appointmentId}
             id={appointment.appointmentId}
-            name={appointment.salonService.serviceName}
+            name={appointment?.salonService?.serviceName}
             location={appointment.location}
             image={appointment.image? appointment.image.medium : IMAGE_NOT_FOUND }
-            appointmentPrice={appointment.salonService.servicePrice}
-            appointmentDuration={appointment.salonService.serviceDuration+" hrs"}
+            appointmentPrice={appointment?.salonService?.servicePrice}
+            appointmentDuration={appointment?.salonService?.serviceDuration+" hrs"}
             visitType={appointment.visitType}
             prefferedDate={appointment.preferredDate}
             prefferedTime={appointment.prefferedTime}
-            discount={appointment.salonService.discount+"%"}       
+            discount={appointment?.salonService?.discount+"%"}       
             />)
             }
         </FlexGrid>

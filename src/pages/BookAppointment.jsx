@@ -9,43 +9,48 @@ const BookAppointment = () => {
             preferredDate:"",
             preferredTime:"",
             location:"",
-            customer: {
-                name: "",
-                email: "",
-                contactNo: "",
-                dob: "",
-                user1: {
-                userId: 0,
-                userName: "",
-                password: ""
-                },
-                address: {
-                door_no: "",
-                street: "",
-                area: "",
-                city: "",
-                state: "",
-                pincode: 0
-                },
-                userId: 0
-                },
-                salonService: {
-                    serviceId: 0,
-                    serviceName: "",
-                    servicePrice: "",
-                    serviceDuration: "",
-                    discount: 0
-                    },
-            payment: {
-                paymentId: 1,
-                type: "",
-                status: "",
-                card: null
-                }
+            customer:{customerId:null},
+            salonService:null,
+            payment:null
+            
         }) 
+
+        // customer: {
+        //     name: "",
+        //     email: "",
+        //     contactNo: "",
+        //     dob: "",
+        //     user1: {
+        //     userId: 0,
+        //     userName: "",
+        //     password: ""
+        //     },
+        //     address: {
+        //     door_no: "",
+        //     street: "",
+        //     area: "",
+        //     city: "",
+        //     state: "",
+        //     pincode: 0
+        //     },
+        //     userId: 0
+        //     },
+        //     salonService: {
+        //         serviceId: 0,
+        //         serviceName: "",
+        //         servicePrice: "",
+        //         serviceDuration: "",
+        //         discount: 0
+        //         },
+        // payment: {
+        //     paymentId: 1,
+        //     type: "",
+        //     status: "",
+        //     card: null
+        //     }
     
     
-        const handleInput = (e)=>{
+        const handleInput= (e)=>{
             const name =e.target.name;
             const value = e.target.value;
             console.log(name, value);
@@ -54,7 +59,13 @@ const BookAppointment = () => {
         const handleCustomerInput = (e)=>{
             const { name, value } = e.target;
             setappointmentDetails(prevValues => {
-                return {...prevValues, customer:{...prevValues.customer, [name]:value}}})
+                return {...prevValues, customer:value}})
+            // setappointmentDetails({
+            //     ...appointmentDetails,
+            //     customer:{
+            //         ...appointmentDetails.customer.name,[name]:value
+            //     }
+            // })
         }
         // const handleSalonServiceInput = (e)=>{
         //     const { name, value } = e.target;
@@ -68,10 +79,13 @@ const BookAppointment = () => {
         // }
     
         const handleSubmit = (e)=>{
+            console.log(appointmentDetails)
+            e.preventDefault();
             axios.post("http://localhost:8000/appointment/addAppointment",appointmentDetails)
             .then(resp=>{
-                let newappointment = {...appointmentDetails, id:resp.id};
-                setappointmentDetails(prev=>[...prev, newappointment]);
+                console.log(resp)
+                // let newappointment = {...appointmentDetails, id:resp.id};
+                // setappointmentDetails(prev=>[...prev, newappointment]);
                 //setappointmentDetails({initialValues});
             })
             .catch(err=>console.log(err));
@@ -100,11 +114,11 @@ const BookAppointment = () => {
             </div>
             <div>
                 <label htmlFor='preferredDate'>Preffered Date</label>
-                <SearchInput type= 'Date' autoComplete='off' 
+                <SearchInput type= 'date' autoComplete='off' 
                 value={appointmentDetails.preferredDate}
                 placeholder="Preffered Date"
                 onChange={handleInput}
-                name='prefferredDate' id='prefferredDate'/>
+                name='preferredDate' id='preferredDate'/>
             </div>
             <div>
                 <label htmlFor='preferredTime'>Preffered Time</label>
@@ -119,18 +133,18 @@ const BookAppointment = () => {
             <div>
                 <label htmlFor='customerId'>Customer ID</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails.customerId}
+                value={appointmentDetails?.customer}
                 placeholder="Customer ID"
-                onChange={handleInput}
+                onChange={handleCustomerInput}
                 name='customerId' id='customerId'/>
             </div>
             </AddressBox>
 
             <CustomerDetails>
-            <div>
+            {/* <div>
                 <label htmlFor='area'>Area</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                //value={appointmentDetails.area}
+                value={appointmentDetails.customer.area}
                 placeholder="Service ID"
                 onChange={handleCustomerInput}
                 name='area' id='area'/>
@@ -138,20 +152,20 @@ const BookAppointment = () => {
             <div>
                 <label htmlFor='city'>City</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                //value={appointmentDetails.city}
+                value={appointmentDetails.customer.city}
                 placeholder="City"
                 onChange={handleCustomerInput}
                 name='city' id='city'/>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
                 <label htmlFor='door_no'>Door Number</label>
                 <SearchInput type= 'text' autoComplete='off' 
                 //value={appointmentDetails.door_no}
                 placeholder="Door Number"
                 onChange={handleCustomerInput}
                 name='door_no' id='door_no'/>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
                 <label htmlFor='pincode'>Pincode</label>
                 <SearchInput type= 'text' autoComplete='off' 
                 //value={appointmentDetails.pincode}
@@ -174,7 +188,7 @@ const BookAppointment = () => {
                 placeholder="Street"
                 onChange={handleCustomerInput}
                 name='street' id='street'/>
-            </div>
+            </div> */}
             </CustomerDetails>
             <SearchButtonWrapper2><button type='submit'>Add appointment</button></SearchButtonWrapper2>
             

@@ -1,7 +1,8 @@
 import React from "react";
 
 import OrderCard from "./OrderCard";
-import { Box, Box1 } from "../styled";
+import { Box } from "../styled";
+
 const OrderGrid = ({ data }) => {
   return (
     <Box>
@@ -11,10 +12,10 @@ const OrderGrid = ({ data }) => {
           id={order.orderId}
           billingDate={order.billingDate}
           paymentMethod={order.paymentMethod}
-          salonservice={order.salonservice.serviceName}
-          salonservice1={order.salonservice.servicePrice}
-          salonservice2={order.salonservice.serviceDuration}
-          salonservice3={order.salonservice.discount}
+          discount={order.appointment.salonService.discount}
+          appointment={order.appointment.salonService.serviceName}
+          appointment1={order.appointment.visitType}
+          appointment3={order.appointment.salonService.servicePrice}
         />
       ))}
     </Box>

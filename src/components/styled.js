@@ -115,7 +115,7 @@ position: absolute;
 width: 1200px;
 height: 130px;
 left: 100px;
-top: 190px;
+top: 220px;
 
 
 
@@ -187,3 +187,4 @@ background: #FFFFFF;
 border: 1px solid rgba(87, 86, 100, 0.2);
 border-radius: 8px;
 `;
+
