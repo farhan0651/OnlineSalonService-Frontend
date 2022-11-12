@@ -52,7 +52,7 @@ box-sizing: border-box;
 
 position: absolute;
 width: 430px;
-height: 170px;
+height: 470px;
 left: 716px;
 top: 565px;
 
@@ -188,7 +188,7 @@ export const SearchButtonWrapper2 = styled.div`
   margin-bottom: 35px;
   position: absolute;
   left:580px;
-  top: 760px;
+  top: 1040px;
   
   button {
     color: #fff;

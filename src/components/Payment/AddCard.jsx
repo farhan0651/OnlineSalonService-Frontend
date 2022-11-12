@@ -59,8 +59,8 @@ const AddCard = ({setCardList}) => {
         if(cardDetails.cardNumber===''){
             cardNumberErr.cardNumber = "*Card Number is required";
             isValid = false;
-        }else if(cardDetails.cardNumber.trim().length !== 6){
-            cardNumberErr.cardNumber = "*Card Number is must be of 6 digits";
+        }else if(cardDetails.cardNumber.trim().length !== 16){
+            cardNumberErr.cardNumber = "*Card Number is must be of 16 digits";
             isValid = false;
         }
         if(cardDetails.expiryDate===''){

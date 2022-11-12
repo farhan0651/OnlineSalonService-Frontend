@@ -80,11 +80,6 @@ const renderResults=()=>{
     if(results && results.length>0){
       return <AppointmentGrid data={results} />
     }
-    /*if(!(isView==="viewAppointment")){
-      console.log("Inside function");
-      //dispatch({type:'FetchSuccess', results:null})
-      return(<BookAppointment />);
-    }*/
 
     return null;
 };
@@ -92,14 +87,12 @@ const renderResults=()=>{
 const onRadioChange=(eventObject)=>{
   dispatch({type:'FetchSuccess', results:null})
   setOption(eventObject.target.value);
-  //return(<BookAppointment />);
 }
 
 const bookAppointmetnShow=()=>{
   if(!(option==="viewAppointment")){
     console.log("Inside function");
-    //dispatch({type:'FetchSuccess', results:null})
-    return(<BookAppointment />);
+    return(<BookAppointment customerId={input} />);
   }}
 
   return (

@@ -2,6 +2,9 @@ import React from "react";
 //import { Link } from "react-router-dom";
 import { Box1 } from "../styled";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import OrderGrid from "./OrderGrid";
+import Services from "../../pages/Services";
 
 import { useState } from "react";
 const OrderCard = ({
@@ -44,63 +47,6 @@ const OrderCard = ({
   };
 
   return (
-    /*<Box1>
-      <table>
-        <tr>
-          <td>
-            <h3> OrderId </h3>
-          </td>
-
-          <td>
-            <h3>Service</h3>
-          </td>
-
-          <td>
-            <h3> Amount </h3>
-          </td>
-          <td>
-            <h3> Offer(%) </h3>
-          </td>
-          <td>
-            <h3> Paymentstatus </h3>
-          </td>
-
-          <td>
-            <h3> PaymentMethod</h3>
-          </td>
-          <td>
-            <h3> BillingDate </h3>
-          </td>
-          <button onClick={ClickHandle}>X</button>
-        </tr>
-        <tr>
-          <td>
-            <p>{id}</p>
-          </td>
-          <td>
-            <p>{appointment}</p>
-          </td>
-          <td>
-            <p>{appointment3}</p>
-          </td>
-          <td>
-            <p>{discount}</p>
-          </td>
-
-          <td>
-            <p>{appointment1}</p>
-          </td>
-
-          <td>
-            <p>{paymentMethod}</p>
-          </td>
-          <td>
-            <p>{billingDate}</p>
-          </td>
-        </tr>
-      </table>
-    </Box1>*/
-
     <div className="col-sm-6 col-md-4">
       <div className="card border-white card text-bg-light">
         <div className="card-header">
@@ -114,7 +60,9 @@ const OrderCard = ({
           <p className="card-text">Paymentstatus- {appointment1}</p>
           <p className="card-text">PaymentMethod- {paymentMethod}</p>
           <p className="card-text">BillingDate- {billingDate}</p>
-
+          <div className="btns">
+            <Link to={`/Services`}>Book Again</Link>
+          </div>
           <Button onClick={ClickHandle} variant="primary">
             Delete
           </Button>

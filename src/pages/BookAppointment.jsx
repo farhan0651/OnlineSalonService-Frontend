@@ -1,201 +1,194 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from 'axios'
-import { AddressBox, Appointmentdetails, CustomerDetails, H1, SearchButtonWrapper2, SearchInput } from './styled'
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { Form, Col, Button, Container, Alert} from 'react-bootstrap';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { TitleWrapper } from "./styled";
 
-const BookAppointment = () => {
-        const [appointmentDetails, setappointmentDetails] = useState({
-            visitType:"",
-            preferredDate:"",
-            preferredTime:"",
-            location:"",
-            customer:{customerId:null},
-            salonService:null,
-            payment:null
-            
-        }) 
+function BookAppointment({customerId}){
+    const [isLoading, setLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState();
+    // const [formErrors, setFormErrors] = useState({
+    //     location:null,
+    //     inspectionType:null,
+    //     preferredDate:null,
+    //     preferredTime:null
+    // });
 
-        // customer: {
-        //     name: "",
-        //     email: "",
-        //     contactNo: "",
-        //     dob: "",
-        //     user1: {
-        //     userId: 0,
-        //     userName: "",
-        //     password: ""
-        //     },
-        //     address: {
-        //     door_no: "",
-        //     street: "",
-        //     area: "",
-        //     city: "",
-        //     state: "",
-        //     pincode: 0
-        //     },
-        //     userId: 0
-        //     },
-        //     salonService: {
-        //         serviceId: 0,
-        //         serviceName: "",
-        //         servicePrice: "",
-        //         serviceDuration: "",
-        //         discount: 0
-        //         },
-        // payment: {
-        //     paymentId: 1,
-        //     type: "",
-        //     status: "",
-        //     card: null
-        //     }
-    
-    
-        const handleInput= (e)=>{
-            const name =e.target.name;
-            const value = e.target.value;
-            console.log(name, value);
-            setappointmentDetails({ ...appointmentDetails, [name]: value})
+    // form value handler
+    const initialvalues = {
+        location:"",
+        visitType:"",
+        preferredDate:"",
+        preferredTime:"",
+        customer:{
+            customerId:customerId
+        },
+        salonService:{
+            serviceId:1
+        },
+        payment:{
+            paymentId:1
         }
-        const handleCustomerInput = (e)=>{
-            const { name, value } = e.target;
-            setappointmentDetails(prevValues => {
-                return {...prevValues, customer:{...prevValues.customer,[name]:value}}})
-            // setappointmentDetails({
-            //     ...appointmentDetails,
-            //     customer:{
-            //         ...appointmentDetails.customer.name,[name]:value
-            //     }
-            // })
-        }
-        // const handleSalonServiceInput = (e)=>{
-        //     const { name, value } = e.target;
-        //     setappointmentDetails(prevValues => {
-        //         return {...prevValues, salonService:{...prevValues.customer, [name]:value}}})
-        // }
-        // const handlePaymentInput = (e)=>{
-        //     const { name, value } = e.target;
-        //     setappointmentDetails(prevValues => {
-        //         return {...prevValues, payment:{...prevValues.customer, [name]:value}}})
-        // }
-    
-        const handleSubmit = (e)=>{
-            console.log(appointmentDetails)
-            e.preventDefault();
-            axios.post("http://localhost:8000/appointment/addAppointment",appointmentDetails)
-            .then(resp=>{
-                console.log(resp)
-                // let newappointment = {...appointmentDetails, id:resp.id};
-                // setappointmentDetails(prev=>[...prev, newappointment]);
-                //setappointmentDetails({initialValues});
-            })
-            .catch(err=>console.log(err));
-            
-        }
-      return (
-        <div className="card">
-        <H1>Book Appointment</H1>
-        <form action="" onSubmit={handleSubmit}>
-            <Appointmentdetails>
-            <div>
-                <label htmlFor='visitType'>Visit Type</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails.visitType}
-                placeholder="Visit Type"
-                onChange={handleInput}
-                name='visitType' id='visitType'/>
-            </div>
-            <div>
-                <label htmlFor='location'>Location</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails.location}
-                placeholder="Location"
-                onChange={handleInput}
-                name='location' id='location'/>
-            </div>
-            <div>
-                <label htmlFor='preferredDate'>Preffered Date</label>
-                <SearchInput type= 'date' autoComplete='off' 
-                value={appointmentDetails.preferredDate}
-                placeholder="Preffered Date"
-                onChange={handleInput}
-                name='preferredDate' id='preferredDate'/>
-            </div>
-            <div>
-                <label htmlFor='preferredTime'>Preffered Time</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails.preferredTime}
-                placeholder="Preffered Time"
-                onChange={handleInput}
-                name='preferredTime' id='preferredTime'/>
-            </div>
-            </Appointmentdetails>
-            <AddressBox>
-            <div>
-                <label htmlFor='customerId'>Customer ID</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails?.customer?.customerId}
-                placeholder="Customer ID"
-                onChange={handleCustomerInput}
-                name='customerId' id='customerId'/>
-            </div>
-            </AddressBox>
+    }
+    // Validation schema
+    const bookAppointmentValidationSchema = Yup.object().shape({
+        location: Yup.string().required("location is required"),
+                    //.test("backend_location",formErrors.location,()=>Boolean(!formErrors.location)),
+        visitType: Yup.string().required("Inspection is required"),
+        preferredDate: Yup.date().required("Date is required")
+                        .min(new Date(),"Date must be in future")
+                        .max(new Date(new Date().getFullYear()+2, new Date().getMonth()), "Date must be within a year"),
+        preferredTime:Yup.string().required("Time is required")
+                    .test("valid_time", 
+                        "Select time between 5 AM And 6 PM", 
+                        function(timeValue){
+                            if(timeValue > "05:00" && timeValue < "18:00")
+                                return true;
+                            return false;
+                        }
+                    )
+    });
 
-            <CustomerDetails>
-            {/* <div>
-                <label htmlFor='area'>Area</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails.customer.area}
-                placeholder="Service ID"
-                onChange={handleCustomerInput}
-                name='area' id='area'/>
-            </div>
+    useEffect(()=>{
+        setErrorMessage();
+        axios.get("http://localhost:8000/appointment/getAll")
+        .then(data=>{
+            console.log("second")
+            console.log(data);
+        }).catch(err=>setLoading(false));
+    },[])
+
+    // Form submit handler
+    const onFormSubmit = (formValues)=>{
+        //e.preventDefault();
+        console.log("Form Submit:");
+        console.log(formValues);
+        axios.post(`http://localhost:8000/appointment/addAppointment`, formValues)
+        .then(resp=>{
+            console.log("db updated...");
+            console.log(resp.data);
+        }).catch(err=>{
+            console.error(err.response);
+            if(err.response.data && err.response.data.message){
+                setErrorMessage(err.response.data.message);
+                //setFormErrors(err.response.data);
+            }
+        });
+    }
+    return (
+        <Container className="col-md-4" data-testid='baseContainer'>
+            <TitleWrapper><h2>Book Appointment</h2></TitleWrapper>
             <div>
-                <label htmlFor='city'>City</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails.customer.city}
-                placeholder="City"
-                onChange={handleCustomerInput}
-                name='city' id='city'/>
-            </div> */}
-            {/* <div>
-                <label htmlFor='door_no'>Door Number</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                //value={appointmentDetails.door_no}
-                placeholder="Door Number"
-                onChange={handleCustomerInput}
-                name='door_no' id='door_no'/>
-            </div> */}
-            {/* <div>
-                <label htmlFor='pincode'>Pincode</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                //value={appointmentDetails.pincode}
-                placeholder="Pincode"
-                onChange={handleCustomerInput}
-                name='pincode' id='pincode'/>
+                {/* <h4>Car Details </h4> */}
+                {/* <CarView carId={customerId} /> */}
+                <h4>Appointment Details</h4>
+
+                <Formik 
+                    initialValues={initialvalues}
+                    validationSchema={bookAppointmentValidationSchema}
+                    onSubmit={onFormSubmit}
+                >
+
+                {({
+                    handleSubmit,
+                    handleChange,
+                    handleBlur,
+                    values,
+                    touched,
+                    isValid,
+                    errors,
+                }) => (
+                <Form noValidate onSubmit={handleSubmit} data-testid="formikForm">
+                    <Form.Group as={Col} className="mb-4"  controlId="location">
+                    <Form.Label>Appointment Location</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="location"
+                        value={values.location}
+                        onChange={handleChange}
+                        isValid={touched.location && !errors.location}
+                        isInvalid={!!errors.location && touched.location}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                    {errors.location}
+                    </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} className="mb-4"  controlId="visitType">
+                    <Form.Label>Visit Type</Form.Label>
+                    <Form.Check>
+                    <Form.Check.Input
+                        type="radio"
+                        name="visitType"
+                        value="home"
+                        onChange={handleChange}
+                        isValid={touched.visitType && !errors.visitType}
+                        isInvalid={!!errors.visitType}
+                    />
+                    <Form.Check.Label>Open</Form.Check.Label>
+                    </Form.Check>
+                    <Form.Check>
+                    <Form.Check.Input
+                        type="radio"
+                        name="visitType"
+                        label="Visit"
+                        value="visitType"
+                        onChange={handleChange}
+                        isInvalid={!!errors.visitType}
+                    />
+                    <Form.Check.Label>Close</Form.Check.Label>
+                    <Form.Control.Feedback type="invalid">
+                    {errors.visitType}
+                    </Form.Control.Feedback>
+                    </Form.Check>
+                    </Form.Group>
+
+                    <Form.Group as={Col} className="mb-4" controlId="preferredDate">
+                    <Form.Label>Preferred Date</Form.Label>
+                    <Form.Control
+                        data-testid="preferredDate"
+                        type="date"
+                        name="preferredDate"
+                        value={values.preferredDate}
+                        onChange={handleChange}
+                        isValid={touched.preferredDate && !errors.preferredDate}
+                        isInvalid={!!errors.preferredDate && touched.preferredDate}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                    {errors.preferredDate}
+                    </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group as={Col} className="mb-4" controlId="preferredTime">
+                    <Form.Label>Preferred Time</Form.Label>
+                    <Form.Control
+                        data-testid="preferredTime"
+                        type="time"
+                        name="preferredTime"
+                        value={values.preferredTime}
+                        onChange={handleChange}
+                        isValid={touched.preferredTime && !errors.preferredTime}
+                        isInvalid={!!errors.preferredTime && touched.preferredTime}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                    {errors.preferredTime}
+                    </Form.Control.Feedback>
+                    </Form.Group>
+                    
+                    <Button type="submit" className="mb-4" >Submit</Button>
+                </Form>
+                )}
+                </Formik>
             </div>
-            <div>
-                <label htmlFor='state'>State</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                //value={appointmentDetails.state}
-                placeholder="State"
-                onChange={handleCustomerInput}
-                name='state' id='state'/>
-            </div>
-            <div>
-                <label htmlFor='street'>Street</label>
-                <SearchInput type= 'text' autoComplete='off' 
-                //value={appointmentDetails.street}
-                placeholder="Street"
-                onChange={handleCustomerInput}
-                name='street' id='street'/>
-            </div> */}
-            </CustomerDetails>
-            <SearchButtonWrapper2><button type='submit'>Add appointment</button></SearchButtonWrapper2>
-            
-        </form>
-        </div>
-      )
-    
+            <div className="mt-4">
+                {errorMessage &&
+                        <Alert variant="danger">
+                    {errorMessage}
+                    </Alert>
+                }
+            </div>  
+        </Container>
+    );
 }
 
-export default BookAppointment
+export default BookAppointment;
