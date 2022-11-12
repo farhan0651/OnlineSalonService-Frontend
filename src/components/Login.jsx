@@ -16,16 +16,15 @@ function UserLogin() {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-  //const dis1=()=>{dispatch(register())};
+
   const fetchUsers = async() =>{
     await axios.get('http://localhost:8000/user/signin',formValues)
     .then((data)=>{
-    //let num=[0];
+
     console.log(data.data)
     for(let i=0;i<data.data.length;i++){
       if(data.data[i].userName==formValues.userName && data.data[i].password==formValues.password ){
         console.log("Logged In");
-        //dispatch(login());
         localStorage.setItem("isLoggedIn",true);
         isLogged=true;
         break;
@@ -40,17 +39,10 @@ function UserLogin() {
     setFormErrors(validate(formValues));
     setIsSubmit(true);
   };
-  // const handleSearch=()=>{
-  //   //var errorMessage;
-  //   axios
-  //   .get(
-  //     `http://localhost:8020/user/`
-  //   )
 
-  // };
 
   useEffect(() => {
-    //const loginState=localStorage.getItem("isLoggedIn");
+
     console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
@@ -82,11 +74,7 @@ function UserLogin() {
 
   return (
     <div className="container">
-      {/* {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Signed in successfully</div>
-      ) : (
-        <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
-      )} */}
+      
 
       <form className='form card' onSubmit={handleSubmit} style={{
         width:"350px",
@@ -112,16 +100,7 @@ function UserLogin() {
             />
           </div>
           <p style={{color:"red", fontSize:"13px"}}>{formErrors.userName}</p>
-          {/* <div className="field">
-            <label>Email:</label>
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-          </div> */}
+          
           <p>{formErrors.email}</p>
           <div className="field">
             <label className="form-label">Password:</label><br/>
@@ -136,8 +115,7 @@ function UserLogin() {
           </div>
           <p style={{color:"red", fontSize:"13px"}}>{formErrors.password}</p>
           <button type='submit' class="btn btn-primary" style={{fontSize:"17px",marginTop:"10px"}} onClick={fetchUsers}>Login</button>
-          {/* <button onClick={()=>{dispatch(login())}}>test</button>*/}
-          {/* <p>{formErrors.userName}</p>   */}
+          
         </div>
       </form>
       

@@ -15,7 +15,6 @@ import Threading from '../../images/Threading.jpg'
 import BleachDTan from '../../images/BleachDTan.png'
 
 const ServiceGrid = ({data}) => {
-  //console.log(data);
   const im=[HairCut,PreBridal,FacialCleanUp,BleachDTan,Manicure,Pedicure,HairCare,Waxing,BodyDeals,MakeUp,Threading]
   return (
     <FlexGrid>

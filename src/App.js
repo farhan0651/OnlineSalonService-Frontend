@@ -7,6 +7,8 @@ import MyCards from "./pages/MyCards";
 import { ThemeProvider } from 'styled-components';
 import Myprofile from './pages/Myprofile';
 import Myprofile1 from './pages/MyProfile1';
+import ProtectRoute from './pages/ProtectedRoute';
+import SignIn from './pages/SignIn';
 
 const theme = {
   mainColors: {
@@ -21,7 +23,9 @@ function App() {
       <ThemeProvider theme={theme}>
       <div>
           <Routes>
-            <Route exact path="/" element={<Homepage/>} />
+            <Route exact path="/Homepage" element={<Homepage/>} />
+            <Route exact path='/signin' element={<SignIn />}/>
+            <Route path="/" element={<ProtectRoute><Homepage /></ProtectRoute>}/>
             <Route exact path="/Myprofile" element={<Myprofile />} />
             <Route exact path="/Myprofile1" element={<Myprofile1 />} />
             <Route exact path="/Appointments" element={<Appointments />} />
