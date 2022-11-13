@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
-import { AddressBox, Appointmentdetails, CustomerDetails, H1, SearchButtonWrapper2, SearchInput } from './styled'
+import { AddressBox, Appointmentdetails, CustomerDetails, H1, SearchButtonWrapper, SearchInput } from './styled'
 import PaymentDetails from '../components/Payment/PaymentDetails'
 
 const BookAppointment = () => {
@@ -17,8 +17,8 @@ const BookAppointment = () => {
               customerId: 0
             },
             payment: {
-              type: "",
-              status: "",
+              type: "Cards",
+              status: "Done",
               card: {
                 cardId: 1
               }
@@ -40,6 +40,38 @@ const BookAppointment = () => {
                 paymentId:119
             }
             }) 
+
+            const[cardList,setCardList] =useState([]);
+            const[paymentType,setPaymentType] =useState("upi");
+             
+             // const onChangeHandler = (e) =>{
+             //     const value = e.target.value;
+             //     console.log(value);
+             //     setCardNumber({ ...cardNumber, value})
+             // }
+             //For Payment Type
+             // const [paymentType, setPaymentType] = useState("");
+             const onChangeHandleCard = (event) =>{
+                 //Targeting by name and value
+                 const name =event.target.name;
+                 const value = event.target.value;
+                 console.log(name,value)
+                 setPaymentType(value)
+                 // setPayment({...setPayment, [name]: value});
+                //  setappointmentDetails(prevValues=>{return{...prevValues,payment:{card:{cardId:value}},payment:{type:paymentType}}})
+             }
+
+
+            useEffect(() => {
+                // Get api of card list 
+                axios.get(`http://localhost:8000/card/getAllCards`)
+                // res.data is card list from api
+                .then(resp=>{
+                  setCardList(resp.data)
+              })
+              .catch(err=>console.log(err));
+              
+               }, [])
     
 
         // const [option,setOption]=useState('viewPayment');
@@ -114,70 +146,67 @@ const BookAppointment = () => {
             
         }
       return (
-        <div className="card">
-        <H1>Book Appointment</H1>
-        <form action="" onSubmit={handleSubmit}>
-            <Appointmentdetails>
-            <div>
-                <label htmlFor='visitType'>Visit Type</label>
+        <div className="row g-3" style={{marginLeft:"250px"}}>
+        <h1>Book Appointment</h1>
+        <form className="row g-3" action="" onSubmit={handleSubmit} >
+            <div className="col-md-6">
+                <label htmlFor='visitType' className="form-label">Visit Type</label><br/>
                 <SearchInput type= 'text' autoComplete='off' 
                 value={appointmentDetails.visitType}
                 placeholder="Visit Type"
                 onChange={handleInput}
-                name='visitType' id='visitType'/>
+                name='visitType' id='visitType' className="form-control"/>
             </div>
-            <div>
-                <label htmlFor='location'>Location</label>
+            <div className="col-md-6">
+                <label htmlFor='location' className="form-label">Location</label><br/>
                 <SearchInput type= 'text' autoComplete='off' 
                 value={appointmentDetails.location}
                 placeholder="Location"
                 onChange={handleInput}
                 name='location' id='location'/>
             </div>
-            <div>
-                <label htmlFor='preferredDate'>Preffered Date</label>
+            <div class="col-md-6">
+                <label htmlFor='preferredDate' className="form-label">Preffered Date</label><br/>
                 <SearchInput type= 'date' autoComplete='off' 
                 value={appointmentDetails.preferredDate}
                 placeholder="Preffered Date"
                 onChange={handleInput}
                 name='preferredDate' id='preferredDate'/>
             </div>
-            <div>
-                <label htmlFor='preferredTime'>Preffered Time</label>
+            <div class="col-md-6">
+                <label htmlFor='preferredTime' className="form-label">Preffered Time</label>
                 <SearchInput type= 'text' autoComplete='off' 
                 value={appointmentDetails.preferredTime}
                 placeholder="Preffered Time"
                 onChange={handleInput}
                 name='preferredTime' id='preferredTime'/>
             </div>
-            </Appointmentdetails>
-            <AddressBox>
-            <div>
-                <label htmlFor='customerId'>Customer ID</label>
+
+            <div class="col-md-6">
+                <label htmlFor='customerId' className="form-label">Customer ID</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails?.customer?.customerId}
+                //value={appointmentDetails?.customer?.customerId}
                 placeholder="Customer ID"
                 onChange={handleCustomerInput}
                 name='customerId' id='customerId'/>
-
+            </div>
                 {/* <label htmlFor='userId'>User ID</label>
                 <SearchInput type= 'text' autoComplete='off' 
                 value={appointmentDetails.customer.user1.userId}
                 placeholder="User ID"
                 onChange={handleUserInput}
                 name='userId' id='userId'/> */}
-
-                <label htmlFor='serviceId'>Service ID</label>
+            <div class="col-md-6">
+                <label htmlFor='serviceId' className="form-label">Service ID</label>
                 <SearchInput type= 'text' autoComplete='off' 
-                value={appointmentDetails?.salonService?.serviceId}
+                //value={appointmentDetails?.salonService?.serviceId}
                 placeholder="Service ID"
                 onChange={handleSalonServiceInput}
                 name='serviceId' id='serviceId'/>
             </div>
-            </AddressBox>
 
-            <CustomerDetails>
             <div>
+            {/* <div>
                 <label htmlFor='type'>Type</label>
                 <SearchInput type= 'text' autoComplete='off' 
                 value={appointmentDetails.payment.type}
@@ -192,18 +221,43 @@ const BookAppointment = () => {
                 placeholder="Status"
                 onChange={handlePaymentInput}
                 name='status' id='status'/>
-            </div>
-            <div>
+            </div> */}
+            <div className="col-md-6">
                 {/* <label htmlFor='cardId'>Card ID</label>
                 <SearchInput type= 'text' autoComplete='off' 
                 value={appointmentDetails.payment.card.cardId}
                 placeholder="Card ID"
                 onChange={handleCardInput}
                 name='cardId' id='cardId'/> */}
+                
+                <h4><strong>Payment Details</strong></h4>
+        <div className="form-label">
+            <h5 style={{marginTop: "20px", fontWeight:"600"}}>Choose Payment Type</h5>
+            <select name = "paymentType" onChange={onChangeHandleCard} style={{width: "80px"}}>
+                <option value="upi" >UPI</option>
+                <option value="card">Card</option>
+                <option value="Cash">Cash</option>
+            </select>
+            
+        </div>
+        {paymentType==="card"&&
+        <>  
+        <h5 style={{marginTop: "20px",  fontWeight:"600"}}>Choose Card</h5>
+            {cardList.map((c,i)=>{
+            return <div key={i} className="form-check">
+            <input className="form-check-input" type="radio" name="cardNumber" id={c.cardId} />
+            <label className="form-check-label" htmlFor='{c.cardId}' >
+                {c.cardNumber}<br/>{c.cardName}
+            </label>
+            </div>
+        })} 
+        </>
+        }
+
             </div>
             {/* {paymentDetailsShow()} */}
-            </CustomerDetails>
-            <SearchButtonWrapper2><button type='submit'>Add appointment</button></SearchButtonWrapper2>
+            </div>
+            <SearchButtonWrapper><button type='submit'>Add appointment</button></SearchButtonWrapper>
             
         </form>
         </div>

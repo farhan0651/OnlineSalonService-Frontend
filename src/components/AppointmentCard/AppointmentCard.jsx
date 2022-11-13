@@ -18,10 +18,10 @@ const AppointmentCard = ({id,name,image,appointmentPrice,appointmentDuration,dis
           <p>Duration: {appointmentDuration}</p>
           <p>Discount: {discount}</p>
 
-          <div className='btns'>
+          {/* <div className='btns'>
             <button type="button">Update Location</button>
             <button type="button">Cancel</button>
-          </div>
+          </div> */}
         </StyledAppointmentCard>
       );
 }

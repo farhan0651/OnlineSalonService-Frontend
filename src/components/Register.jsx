@@ -1,15 +1,18 @@
 import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from "react";
+import {useNavigate} from 'react-router-dom'
 
 
 
 //import axios from 'axios';
 function UserRegister() {
+  const back="https://images.unsplash.com/photo-1595475884562-073c30d45670?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80";
   const initialValues={userId:"",password:"",userName:""};
 const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const navigate=useNavigate();
 
 
 
@@ -39,6 +42,8 @@ const [formValues, setFormValues] = useState(initialValues);
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    localStorage.setItem("isLoggedIn", true);
+    navigate('/Homepage');
   };
   // const handleSearch=()=>{
   //   //var errorMessage;
@@ -81,6 +86,7 @@ const [formValues, setFormValues] = useState(initialValues);
   };
 
   return (
+    <div style={{backgroundImage: `url(${back})`,backgroundRepeat:'noRepeat' ,height: '100vh'}}>
     <div className="container">
       {/* {Object.keys(formErrors).length === 0 && isSubmit ? (
         <div className="ui message success">Signed in successfully</div>
@@ -154,6 +160,7 @@ const [formValues, setFormValues] = useState(initialValues);
         </div>
       </form>
       
+    </div>
     </div>
   )
 }

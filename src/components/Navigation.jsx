@@ -7,7 +7,6 @@ const Navigation = () => {
   const LINKS=[
     {to:'/',text:"Homepage"},
     {to:'/AddDetails',text:"My Profile"},
-    {to:'/Myprofile1',text:"Testing"},
     {to:"/Appointments",text:"Appointment"},
     {to:'/Orders',text:"Orders"},
     {to:'/Services',text:"Service"},

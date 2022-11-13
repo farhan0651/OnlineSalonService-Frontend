@@ -39,14 +39,14 @@ const PaymentDetails = ({apppointmentDetails}) => {
        }, [])
     const handleSubmit = (e)=>{
         e.preventDefault();
-        const data = {status:"Paid",type:paymentType,cardId:apppointmentDetails.payment.card.id}
+        // const data = {status:"Paid",type:paymentType,cardId:apppointmentDetails.payment.card.id}
 
-        axios.post("http://localhost:8000/payment/addPayment",data)
-        .then((res=>{
-            console.log(res.data)
-            // window.location.reload(false);
-        }))
-        console.log(e.target)
+        // axios.post("http://localhost:8000/payment/addPayment",data)
+        // .then((res=>{
+        //     console.log(res.data)
+        //     // window.location.reload(false);
+        // }))
+        // console.log(e.target)
     }
     return (
     <div>
@@ -73,15 +73,15 @@ const PaymentDetails = ({apppointmentDetails}) => {
         <h5 style={{marginTop: "20px",  fontWeight:"600"}}>Choose Card</h5>
         {cardList.map((c,i)=>{
             return <div key={i} className="form-check">
-            <input className="form-check-input" type="radio" name="cardNumber" id={c.id} />
-            <label className="form-check-label" htmlFor='{c.id}' >
+            <input className="form-check-input" type="radio" name="cardNumber" id={c.cardId} />
+            <label className="form-check-label" htmlFor='{c.cardId}' >
                 {c.cardNumber}<br/>{c.cardName}
             </label>
             </div>
         })} 
         </>
         }
-        <button type='submit' className="btn btn-primary" style={{marginTop: "20px"}}>Pay</button>
+        {/* <button type='submit' className="btn btn-primary" style={{marginTop: "20px"}}>Pay</button> */}
         
     </form>
             

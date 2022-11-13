@@ -1,8 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { StyledServiceCard } from './ServiceCard.styled';
+import { Button } from "react-bootstrap";
 
 const ServiceCard = ({ id, image, name, servicePrice, serviceDuration, discount }) => {
+  const navigate=useNavigate()
+  const handle=()=>{
+    navigate('/Appointments');
+}
+
     return (
       <StyledServiceCard>
         <div className='img-wrapper'>
@@ -15,9 +21,8 @@ const ServiceCard = ({ id, image, name, servicePrice, serviceDuration, discount 
         <p>Duration: {serviceDuration}</p>
         <p>Discount: {discount}</p>
   
-        <div className='btns'>
-          <Link to={`/Appointments`}>Book Appointment</Link>
-          <button type="button">Star me</button>
+        <div>
+          <Button data-testid="button3" onClick={handle}>Book Appointment</Button>
         </div>
       </StyledServiceCard>
     );

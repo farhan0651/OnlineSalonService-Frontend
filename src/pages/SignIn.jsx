@@ -100,21 +100,29 @@ const SignIn = () => {
         return errors;
       };
     
-
+      const back="https://images.unsplash.com/photo-1595475884562-073c30d45670?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80";
     return (
-        <div className="card my-4" style={{ width: '18rem', margin: 'auto' }}>
+      <div style={{backgroundImage: `url(${back})`,backgroundRepeat:'noRepeat' ,height: '100vh'}}>
+        <div className="card" style={{
+          width:"320px",
+          height:"500px",
+          marginLeft: "580px",
+          marginRight: "120px",
+            padding: "30px 25px",
+            marginTop: "20px",
+          }}>
                 <div className="card-body" >
 
-             <Container className='mt-4 p-4'>
+             <Container className='mt-0.5 p-4'>
                 <h1 className='text-center'>Login</h1>
                 <Form onSubmit={submitHandler}>
                 <Form.Group as={Row} className="mb-3" controlId="userName">
-                <Form.Label column sm="2" style={{ display: 'flex'}}>
+                <Form.Label style={{ display: 'flex'}}>
                 Username
                 </Form.Label>
-                <Col sm="10">
+                
                 <Form.Control type="text" name="userName" value={data.userName} placeholder="Username" onChange={changeHandler} style={{  width: '122%'}} />
-                </Col>
+                
                 {errorMessage==="Username should not be blank," ? 
                 <Alert variant="danger">
                     {errorMessage}
@@ -123,13 +131,13 @@ const SignIn = () => {
                  <p style={{color:"red", fontSize:"13px"}}>{formErrors.userName}</p>
                 </Form.Group>
                 
-                <Form.Group as={Row} className="mb-3" controlId="password">
-                <Form.Label column sm="2" style={{ display: 'flex'}}>
+                <Form.Group as={Row} className="mb-1" controlId="password">
+                <Form.Label style={{ display: 'flex'}}>
                 Password
                 </Form.Label>
-                <Col sm="10">
+                
                 <Form.Control type="password" name="password" value={data.password} placeholder="password" onChange={changeHandler} style={{  width: '122%'}} />
-                </Col>
+                
                 {errorMessage==="password should not be blank" ? 
                 <Alert variant="danger">
                     {errorMessage}
@@ -151,6 +159,7 @@ const SignIn = () => {
                     </Alert> : null
                 }
              </Container>
+            </div>
             </div>
             </div>
 

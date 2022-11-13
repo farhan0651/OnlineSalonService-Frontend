@@ -175,7 +175,7 @@ const AddCard = ({setCardList}) => {
             return <div style={{color:"red", fontSize:"13px"}}>{bankNameErr[key]}</div>
         })}
         {/* Submit Button */}
-        <button type='submit' class="btn btn-primary" style={{fontSize:"17px",marginTop:"10px"}}>Add Card</button>
+        <button data-testid="button2" type='submit' class="btn btn-primary" style={{fontSize:"17px",marginTop:"10px"}}>Add Card</button>
         
     </form>
     </div>

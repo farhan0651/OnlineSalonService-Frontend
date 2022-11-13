@@ -76,9 +76,6 @@ const AddCustomer = ({setCustomerList}) => {
 
         let isValid = true;
         
-
-
-
         if(customerDetails.name===''){
             nameErr.name = "*Customer Name is required";
             isValid = false;
@@ -93,7 +90,7 @@ const AddCustomer = ({setCustomerList}) => {
             contactNoErr.contactNo = "*Contact Number is required";
             isValid = false;
         }
-        else if(customerDetails.contactNo.trim().length !== 10 && customerDetails.contactNo>0){
+        else if(customerDetails.contactNo.trim().length !== 10 ){
             contactNoErr.contactNo = "*Contact Number must be of 10 digits";
             isValid = false;
         }
@@ -133,7 +130,7 @@ const AddCustomer = ({setCustomerList}) => {
           marginTop: "20px"
         }}>
         {/* Customer Name Input */}
-        <div class="mb-3">
+        <div className="mb-3">
             <label htmlFor='name' className="form-label" style={{fontWeight:"600"}}>Enter Your Name</label>
             <br />
             <input type= 'text' autoComplete='off' 
@@ -147,13 +144,13 @@ const AddCustomer = ({setCustomerList}) => {
             return <div style={{color:"red", fontSize:"13px"}}>{nameErr[key]}</div>
         })}
         {/* email Input */}
-        <div class="mb-3">
+        <div className="mb-3">
             <label htmlFor='email' className="form-label" style={{fontWeight:"600"}}>Enter Your Email Id</label>
             <br />
             <input type= 'email' autoComplete='off'
             value={customerDetails.email}
             placeholder="Enter Your Email Id"
-            onChange={handleInput}
+            onChange={handleInput}  
             name='email' id='email' className="form-control"/>
         </div>
         {Object.keys(emailErr).map((key)=>{
@@ -161,7 +158,7 @@ const AddCustomer = ({setCustomerList}) => {
         })}
 
         {/* Contact Number Input */}
-        <div class="mb-3">
+        <div className="mb-3">
             <label htmlFor='contactNo' className="form-label" style={{fontWeight:"600"}}>Enter Your Contact Number</label>
             <br />
             <input type= 'tel' autoComplete='off' 
@@ -175,7 +172,7 @@ const AddCustomer = ({setCustomerList}) => {
         })}
 
         {/* Date of Birth Input */}
-        <div class="mb-3">
+        <div className="mb-3">
             <label htmlFor='dob' className="form-label" style={{fontWeight:"600"}}>Date Of Birth</label>
             <br />
             <input type= 'date' autoComplete='off' min="1888-04-04" max="2022-11-14"
@@ -188,7 +185,7 @@ const AddCustomer = ({setCustomerList}) => {
             return <div style={{color:"red", fontSize:"13px"}}>{dobErr[key]}</div>
         })}
         {/* Bank Name Input */}
-        <div class="mb-3">
+        <div className="mb-3">
             <label htmlFor='door_no' className="form-label" style={{fontWeight:"600"}}>Enter Door no </label>
             <br />
             <input type= 'number' autoComplete='off' min="0"       
@@ -200,17 +197,17 @@ const AddCustomer = ({setCustomerList}) => {
         {Object.keys(doorNoErr).map((key)=>{
             return <div style={{color:"red", fontSize:"13px"}}>{doorNoErr[key]}</div>
         })}
-        <div class="mb-3">
+        <div className="mb-3">
             <label htmlFor='userId' className="form-label" style={{fontWeight:"600"}}>User ID</label>
             <br />
             <input type= 'number' autoComplete='off' min="0"
-            value={customerDetails?.user1?.userId}
+            //value={customerDetails?.user1?.userId}
             placeholder="Enter UserID"
             onChange={handleUserInput}
             name='userId' id='userId' className="form-control"/>
         </div>
         {/* Submit Button */}
-        <button type='submit' class="btn btn-primary" style={{fontSize:"17px",marginTop:"10px"}}>Add Details</button>
+        <button data-testid="button5" type='submit' className="btn btn-primary" style={{fontSize:"17px",marginTop:"10px"}}>Add Details</button>
         
     </form>
     </div>

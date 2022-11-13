@@ -1,12 +1,10 @@
 import React from "react";
 //import { Link } from "react-router-dom";
-import { Box1 } from "../styled";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import OrderGrid from "./OrderGrid";
-import Services from "../../pages/Services";
 
 import { useState } from "react";
+import axios from "axios";
 const OrderCard = ({
   id,
   billingDate,
@@ -16,34 +14,21 @@ const OrderCard = ({
   discount,
   appointment3,
 }) => {
-  const [setStatus] = useState(null);
-  const [setErrorMessage] = useState(null);
-
-  const OnDelete = () => {
-    // DELETE request using fetch with error handling
-    fetch(`http://localhost:8756/orders/deleteOrder/${id}`, {
-      method: "DELETE",
-    })
-      .then(async (response) => {
-        const data = await response.json();
-
-        // check for error response
-        if (!response.ok) {
-          // get error message from body or default to response status
-          const error = (data && data.message) || response.status;
-          return Promise.reject(error);
-        }
-
-        setStatus("Delete successful");
+  const ClickHandle = () => {
+    axios
+      .delete(`http://localhost:8000/orders/deleteOrder/${id}`)
+      .then((data) => {
+        console.log(data.data);
+        alert("successfully deleted");
+        window.location.reload(false);
       })
       .catch((error) => {
-        setErrorMessage(error);
-        console.error("There was an error!", error);
+        console.log(error);
+        document.getElementById(
+          "error"
+        ).innerHTML = `There was an error! ${error}`;
+        //window.location.reload(false);
       });
-  };
-  const ClickHandle = () => {
-    OnDelete();
-    window.location.reload(false);
   };
 
   return (
@@ -61,11 +46,15 @@ const OrderCard = ({
           <p className="card-text">PaymentMethod- {paymentMethod}</p>
           <p className="card-text">BillingDate- {billingDate}</p>
           <div className="btns">
-            <Link to={`/Services`}>Book Again</Link>
+            <Link data-testid="links" to={`/Appointments`}>
+              Book Again
+            </Link>
           </div>
-          <Button onClick={ClickHandle} variant="primary">
+
+          <Button data-testid="button" onClick={ClickHandle} variant="primary">
             Delete
           </Button>
+          <div style={{ color: "red", fontSize: "13px" }} id="error"></div>
         </div>
       </div>
     </div>

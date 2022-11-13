@@ -114,7 +114,7 @@ function UserLogin() {
             />
           </div>
           <p style={{color:"red", fontSize:"13px"}}>{formErrors.password}</p>
-          <button type='submit' class="btn btn-primary" style={{fontSize:"17px",marginTop:"10px"}} onClick={fetchUsers}>Login</button>
+          <button data-testid="loginbutton" type='submit' class="btn btn-primary" style={{fontSize:"17px",marginTop:"10px"}} onClick={fetchUsers}>Login</button>
           
         </div>
       </form>

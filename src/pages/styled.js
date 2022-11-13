@@ -94,6 +94,7 @@ export const RadioInputsWrapper = styled.div`
 
 export const SearchButtonWrapper = styled.div`
   text-align: center;
+  margin-top: 10px ;
   margin-bottom: 35px;
   
   button {

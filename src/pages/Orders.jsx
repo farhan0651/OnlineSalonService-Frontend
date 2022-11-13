@@ -8,7 +8,7 @@ import OrderGrid from "../components/OrderCard/OrderGrid";
 const Orders = () => {
   //const [input, setlnput] = useState("");
   const [results, setResults] = useState(null);
- /* const [option, setOption] = useState("viewOrder");
+  /* const [option, setOption] = useState("viewOrder");
   const isView = option === "viewOrder";
 
   const onlnputChange = (eventObject) => {
@@ -20,7 +20,7 @@ const Orders = () => {
       .then((resp) => setResults(resp.data))
       .catch((err) => console.log(err));
   }, []);
- 
+
   const renderResults = () => {
     if (results && results.length === 0) {
       return <div>No Results</div>;
@@ -38,7 +38,7 @@ const Orders = () => {
   return (
     <div>
       <MainPageLayout>
-      <Title title="My Orders" subtitle="Have a Look At your All Orders" />
+        <Title title="My Orders" subtitle="Have a Look At your All Orders" />
         {renderResults()}
       </MainPageLayout>
     </div>

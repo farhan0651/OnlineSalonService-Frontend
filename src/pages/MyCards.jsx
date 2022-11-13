@@ -29,9 +29,6 @@ const MyCards = () => {
     //   bankName:"HDFCdsdsfd"
     // },])
 
-    
-    return () => {
-    }
   }, [])
   
   

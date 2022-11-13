@@ -50,7 +50,10 @@ const ListCard = ({cardList})=>{
                         <h6><span style={{fontWeight:"600"}}>Card Number:</span><span>{c.cardNumber}</span></h6>
                         <h6><span style={{fontWeight:"600"}}>Expiry Date:</span><span>{c.expiryDate}</span></h6>
                         <h6><span style={{fontWeight:"600"}}>BankName:</span><span>{c.bankName}</span></h6>
-                        <Button onClick={(e)=>ClickHandle(e,c.cardId)} variant="primary" style={{
+                        <Button data-testid="cardsbutton" 
+                        onClick={(e)=>ClickHandle(e,c.cardId)} 
+                        variant="primary" 
+                        style={{
                         marginTop: "6px"}}>
                              Delete
                         </Button>
