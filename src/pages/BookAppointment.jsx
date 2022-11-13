@@ -25,12 +25,28 @@ const BookAppointment = () => {
             }
             }) 
 
-        const [option,setOption]=useState('viewPayment');
-        const paymentDetailsShow=()=>{
-            if((option==="viewPayment")){
-              console.log("Inside function");
-              return(<PaymentDetails data={appointmentDetails}/>);
-            }}
+            const [orderDetails, setorderDetails] = useState({
+   
+            amount: 1000,
+            billingDate: "",
+            paymentMethod: "",
+            appointment: {
+                appointmentId: 196
+            },
+            salonService:{
+                serviceId:3
+            },
+            payment:{
+                paymentId:119
+            }
+            }) 
+    
+
+        // const [option,setOption]=useState('viewPayment');
+        // const paymentDetailsShow=()=>{
+        //     if((option==="viewPayment")){
+        //       return(<PaymentDetails data={appointmentDetails}/>);
+        //     }}
     
     
         const handleInput= (e)=>{
@@ -61,24 +77,38 @@ const BookAppointment = () => {
                 return {...prevValues, payment:{...prevValues.payment, [name]:value}}})
         }
 
-        // const handleUserInput = (e)=>{
-        //     const { name, value } = e.target;
-        //     setappointmentDetails(prevValues => {
-        //         return {...prevValues, user1:{...prevValues.customer.user1, [name]:value}}})
-        // }
-
-        const handleCardInput = (e)=>{
+        const handleUserInput = (e)=>{
             const { name, value } = e.target;
             setappointmentDetails(prevValues => {
-                return {...prevValues, card:{...prevValues.payment.card, [name]:value}}})
+                return {...prevValues, user1:{...prevValues.customer.user1, [name]:value}}})
         }
-    
+
+        // const handleCardInput = (e)=>{
+        //     const { name, value } = e.target;
+        //     setappointmentDetails(prevValues => {
+        //         return {...prevValues, card:{...prevValues.payment.card, [name]:value}}})
+        // }
         const handleSubmit = (e)=>{
             console.log(appointmentDetails)
             e.preventDefault();
             axios.post("http://localhost:8000/appointment/addAppointment",appointmentDetails)
             .then(resp=>{
-                console.log("Appointment Created: "+resp.data)
+                console.log("Appointment Created: ")
+                // console.log(resp.data);
+                const newOrder=resp.data.substring(31,34);
+                console.log(newOrder)
+                console.log(typeof(newOrder));
+                setorderDetails(prevValues=>{return {...prevValues,appointment:{appointmentId:newOrder},billingDate:appointmentDetails.preferredDate,salonService:{serviceId:appointmentDetails.salonService.serviceId},paymentMethod:appointmentDetails.payment.type}})
+                console.log(orderDetails);
+            })
+            .catch(err=>console.log(err));
+            
+            setTimeout(5000)
+
+            axios.post("http://localhost:8000/orders/addOrder",orderDetails)
+            .then(resp=>{
+                console.log("Order Created: ")
+                console.log(resp.data);
             })
             .catch(err=>console.log(err));
             
@@ -171,7 +201,7 @@ const BookAppointment = () => {
                 onChange={handleCardInput}
                 name='cardId' id='cardId'/> */}
             </div>
-            {paymentDetailsShow()}
+            {/* {paymentDetailsShow()} */}
             </CustomerDetails>
             <SearchButtonWrapper2><button type='submit'>Add appointment</button></SearchButtonWrapper2>
             

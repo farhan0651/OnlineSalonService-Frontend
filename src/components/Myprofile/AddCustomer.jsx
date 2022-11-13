@@ -19,7 +19,7 @@ const AddCustomer = ({setCustomerList}) => {
        }
     }) 
 
-    // Use States for Form Validation
+    // Use States for Form Validation   
     const [nameErr, setNameErr] = useState({});
     const [emailErr, setEmailErr] = useState({});
     const [dobErr, setDobErr] = useState({});
@@ -77,26 +77,32 @@ const AddCustomer = ({setCustomerList}) => {
         let isValid = true;
         
 
+
+
         if(customerDetails.name===''){
             nameErr.name = "*Customer Name is required";
             isValid = false;
         }
         if(customerDetails.email===''){
-            emailErr.email = "*Customer Number is required";
+            emailErr.email = "*Customer Email is required";
             isValid = false;
         }
+        
+
         if(customerDetails.contactNo===''){
             contactNoErr.contactNo = "*Contact Number is required";
             isValid = false;
         }
-        else if(customerDetails.contactNo.trim().length !== 10){
+        else if(customerDetails.contactNo.trim().length !== 10 && customerDetails.contactNo>0){
             contactNoErr.contactNo = "*Contact Number must be of 10 digits";
             isValid = false;
         }
+        
         if(customerDetails.dob===''){
             dobErr.dob = "*Date of birth is required";
             isValid = false;
         }
+        
         if(customerDetails.door_no===''){
             doorNoErr.door_no = "*Door No. is required";
             isValid = false;
@@ -144,7 +150,7 @@ const AddCustomer = ({setCustomerList}) => {
         <div class="mb-3">
             <label htmlFor='email' className="form-label" style={{fontWeight:"600"}}>Enter Your Email Id</label>
             <br />
-            <input type= 'text' autoComplete='off' 
+            <input type= 'email' autoComplete='off'
             value={customerDetails.email}
             placeholder="Enter Your Email Id"
             onChange={handleInput}
@@ -158,7 +164,7 @@ const AddCustomer = ({setCustomerList}) => {
         <div class="mb-3">
             <label htmlFor='contactNo' className="form-label" style={{fontWeight:"600"}}>Enter Your Contact Number</label>
             <br />
-            <input type= 'text' autoComplete='off' 
+            <input type= 'tel' autoComplete='off' 
             value={customerDetails.contactNo}
             placeholder="Enter Your Contact Number"
             onChange={handleInput}
@@ -172,7 +178,7 @@ const AddCustomer = ({setCustomerList}) => {
         <div class="mb-3">
             <label htmlFor='dob' className="form-label" style={{fontWeight:"600"}}>Date Of Birth</label>
             <br />
-            <input type= 'date' autoComplete='off' 
+            <input type= 'date' autoComplete='off' min="1888-04-04" max="2022-11-14"
             value={customerDetails.dob}
             placeholder="Enter Date of Birth"
             onChange={handleInput}
@@ -183,9 +189,9 @@ const AddCustomer = ({setCustomerList}) => {
         })}
         {/* Bank Name Input */}
         <div class="mb-3">
-            <label htmlFor='door_no' className="form-label" style={{fontWeight:"600"}}>Enter the Door Number of your Address</label>
+            <label htmlFor='door_no' className="form-label" style={{fontWeight:"600"}}>Enter Door no </label>
             <br />
-            <input type= 'number' autoComplete='off' 
+            <input type= 'number' autoComplete='off' min="0"       
             value={customerDetails.door_no}
             placeholder="Enter Door Number"
             onChange={handleAddressInput}
@@ -197,7 +203,7 @@ const AddCustomer = ({setCustomerList}) => {
         <div class="mb-3">
             <label htmlFor='userId' className="form-label" style={{fontWeight:"600"}}>User ID</label>
             <br />
-            <input type= 'number' autoComplete='off' 
+            <input type= 'number' autoComplete='off' min="0"
             value={customerDetails?.user1?.userId}
             placeholder="Enter UserID"
             onChange={handleUserInput}

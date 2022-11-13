@@ -22,12 +22,14 @@ const ListDetails = ({customerList}) => {
                         <h6><span style={{fontWeight:"600"}}>Customer Name:</span><span>{customerList[0]?.name}</span></h6>
                         <h6><span style={{fontWeight:"600"}}>Email:</span><span>{customerList[0]?.email}</span></h6>
                         <h6><span style={{fontWeight:"600"}}>Contact No.:</span><span>{customerList[0]?.contactNo}</span></h6>
+                        <h6><span style={{fontWeight:"600"}}>DOB:</span><span>{customerList[0]?.dob}</span></h6>
                         <h6><span style={{fontWeight:"600"}}>House Number:</span><span>{customerList[0]?.address.door_no}</span></h6>
+
                     </div>
             </div>
         </div>
     </div>
   )
-}
+}       
 
 export default ListDetails

@@ -152,7 +152,7 @@ const AddCard = ({setCardList}) => {
         <div class="mb-3">
             <label htmlFor='expiryDate' className="form-label" style={{fontWeight:"600"}}>Expiry Date</label>
             <br />
-            <input type= 'date' autoComplete='off' 
+            <input type= 'date' autoComplete='off' min="2022-11-14" max="2032-11-14"
             value={cardDetails.expiryDate}
             placeholder="Enter Expiry Date"
             onChange={handleInput}
