@@ -5,10 +5,10 @@ import Orders from "./pages/Orders";
 import Services from "./pages/Services";
 import MyCards from "./pages/MyCards";
 import { ThemeProvider } from 'styled-components';
-import Myprofile from './pages/Myprofile';
-import Myprofile1 from './pages/MyProfile1';
+import MyProfile1 from './pages/MyProfile1';
 import ProtectRoute from './pages/ProtectedRoute';
 import SignIn from './pages/SignIn';
+import AddDetails from './pages/AddDetails';
 
 const theme = {
   mainColors: {
@@ -26,8 +26,8 @@ function App() {
             <Route exact path="/Homepage" element={<Homepage/>} />
             <Route exact path='/signin' element={<SignIn />}/>
             <Route path="/" element={<ProtectRoute><Homepage /></ProtectRoute>}/>
-            <Route exact path="/Myprofile" element={<Myprofile />} />
-            <Route exact path="/Myprofile1" element={<Myprofile1 />} />
+            <Route exact path="/AddDetails" element={<AddDetails />} />
+            <Route exact path="/Myprofile1" element={<MyProfile1 />} />
             <Route exact path="/Appointments" element={<Appointments />} />
             <Route exact path="/MyCards" element={<MyCards />} />
             <Route exact path="/Orders" element={<Orders />} />

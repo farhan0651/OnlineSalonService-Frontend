@@ -38,7 +38,7 @@ box-sizing: border-box;
 
 position: absolute;
 width: 430px;
-height: 96px;
+height: 240px;
 left: 220px;
 top: 565px;
 
@@ -52,7 +52,7 @@ box-sizing: border-box;
 
 position: absolute;
 width: 430px;
-height: 470px;
+height: 170px;
 left: 716px;
 top: 565px;
 

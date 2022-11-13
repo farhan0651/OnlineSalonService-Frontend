@@ -6,8 +6,8 @@ const Navigation = () => {
   const location=useLocation();
   const LINKS=[
     {to:'/',text:"Homepage"},
-    {to:'/Myprofile',text:"All Profile"},
-    {to:'/Myprofile1',text:"My Profile"},
+    {to:'/AddDetails',text:"My Profile"},
+    {to:'/Myprofile1',text:"Testing"},
     {to:"/Appointments",text:"Appointment"},
     {to:'/Orders',text:"Orders"},
     {to:'/Services',text:"Service"},
