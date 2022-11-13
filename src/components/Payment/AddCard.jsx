@@ -12,7 +12,7 @@ const AddCard = ({setCardList}) => {
         expiryDate:"",
         bankName:""
     }) 
-    // Constants for Form Validation
+    // Use States for Form Validation
     const [cardNameErr, setcardNameErr] = useState({});
     const [cardNumberErr, setcardNumberErr] = useState({});
     const [expiryDateErr, setExpiryDateErr] = useState({});
@@ -60,7 +60,7 @@ const AddCard = ({setCardList}) => {
             cardNumberErr.cardNumber = "*Card Number is required";
             isValid = false;
         }else if(cardDetails.cardNumber.trim().length !== 16){
-            cardNumberErr.cardNumber = "*Card Number is must be of 16 digits";
+            cardNumberErr.cardNumber = "*Card Number must be of 16 digits";
             isValid = false;
         }
         if(cardDetails.expiryDate===''){
@@ -110,13 +110,13 @@ const AddCard = ({setCardList}) => {
     {/* Heading for Add Card */}
     <h4 style={{
           fontWeight:"800",
-          marginLeft: "380px",
+          marginLeft: "220px",
         }}>Add Card</h4>
 
     {/* Form to Add Card */}
     <form action="" onSubmit={handleSubmit} className="card" style={{
         width:"350px",
-        marginLeft: "380px",
+        marginLeft: "220px",
         marginRight: "120px",
           padding: "30px 25px",
           marginTop: "20px"
@@ -139,7 +139,7 @@ const AddCard = ({setCardList}) => {
         <div class="mb-3">
             <label htmlFor='cardNumber' className="form-label" style={{fontWeight:"600"}}>Card Number</label>
             <br />
-            <input type= 'text' autoComplete='off' 
+            <input type= 'number' autoComplete='off' 
             value={cardDetails.cardNumber}
             placeholder="Enter Card Number"
             onChange={handleInput}
